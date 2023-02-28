@@ -10,18 +10,18 @@ package Modelo;
  */
 public class PersonaAutorizada extends Persona{
     
-    private int cedulaSocio;
+    private String cedulaSocio;
 
-    public PersonaAutorizada(int cedulaSocio, String cedula, String nombre) {
-        super(cedula, nombre);
+    public PersonaAutorizada(String nombre, String cedula, String cedulaSocio) {
+        super(nombre, cedula);
         this.cedulaSocio = cedulaSocio;
     }
 
-    public int getCedulaSocio() {
+    public String getCedulaSocio() {
         return cedulaSocio;
     }
 
-    public void setCedulaSocio(int cedulaSocio) {
+    public void setCedulaSocio(String cedulaSocio) {
         this.cedulaSocio = cedulaSocio;
     }    
     

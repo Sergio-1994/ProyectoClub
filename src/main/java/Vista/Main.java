@@ -5,6 +5,7 @@
 package Vista;
 
 import Modelo.Club;
+import Modelo.Socio;
 
 /**
  *

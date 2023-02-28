@@ -12,22 +12,18 @@ import java.util.ArrayList;
  */
 public class Persona {
     
-    private String cedula;
     private String nombre;
+    private String cedula;
+ 
     private ArrayList<Factura> factura;
 
-    public Persona(String cedula, String nombre) {
-        this.cedula = cedula;
+    public Persona(String nombre, String cedula) {
         this.nombre = nombre;
+        this.cedula = cedula;        
         this.factura = new ArrayList();
     }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public Persona(){
+        
     }
 
     public String getNombre() {
@@ -38,6 +34,14 @@ public class Persona {
         this.nombre = nombre;
     }
 
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
     public ArrayList<Factura> getFactura() {
         return factura;
     }
@@ -45,6 +49,8 @@ public class Persona {
     public void setFactura(ArrayList<Factura> factura) {
         this.factura = factura;
     }
+
+   
     
     
     

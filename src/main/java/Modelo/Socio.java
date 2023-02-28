@@ -5,23 +5,24 @@
 package Modelo;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author ESTUDIANTE
  */
-public class Socio extends Persona{
-    
+public class Socio extends Persona {
+
     private int idSocio;
-    private ArrayList<PersonaAutorizada> personaAutorizada;
+    private ArrayList<PersonaAutorizada> personasAutorizadas;
     private String fondoDisponible;
     private String tipoSuscripcion;
 
-    public Socio(String fondoDisponible, String tipoSuscripcion, String cedula, String nombre) {
-        super(cedula, nombre);
+    public Socio(String fondoDisponible, String tipoSuscripcion, String nombre, String cedula) {
+        super(nombre, cedula);
         this.fondoDisponible = fondoDisponible;
         this.tipoSuscripcion = tipoSuscripcion;
-        this.personaAutorizada = new ArrayList();
+        this.personasAutorizadas = new ArrayList();
     }
 
     public int getIdSocio() {
@@ -47,11 +48,37 @@ public class Socio extends Persona{
     public void setTipoSuscripcion(String tipoSuscripcion) {
         this.tipoSuscripcion = tipoSuscripcion;
     }
-    
-    
-    
-    
-    
-    
-    
+
+    public void registrarPersonaAutorizada(String nombrePersonaAutorizada, String cedulaPersonaAutorizada, String cedulaSocio) {
+
+        PersonaAutorizada personaAutorizada = buscarPersonaAutorizada(cedulaPersonaAutorizada);
+
+        if (personaAutorizada != null) {
+            JOptionPane.showMessageDialog(null, "Vaya ya exite una persona con se número de cédula!!");
+            return;
+        }
+
+        personaAutorizada = new PersonaAutorizada(nombrePersonaAutorizada, cedulaPersonaAutorizada, cedulaSocio);
+        personasAutorizadas.add(personaAutorizada);
+        JOptionPane.showMessageDialog(null, personaAutorizada.getNombre()
+                + " bienvenido, ya eres una persona autorizada");
+        listarPersonas();
+
+    }
+
+    public PersonaAutorizada buscarPersonaAutorizada(String cedula) {
+        for (PersonaAutorizada personaAutorizada : this.personasAutorizadas) {
+            if (personaAutorizada.getCedula().equals(cedula)) {
+                return personaAutorizada;
+            }
+        }
+        return null;
+    }
+
+    public void listarPersonas() {
+        for (PersonaAutorizada personaAutorizada : this.personasAutorizadas) {
+            System.out.println("Hola: " + personaAutorizada.getNombre());
+        }
+    }
+
 }

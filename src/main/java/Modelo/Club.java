@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import Vista.Main;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -15,6 +16,7 @@ public class Club {
 
     private ArrayList<Socio> socios;
     private ArrayList<Persona> personas;
+
 
     public Club() {
         this.socios = new ArrayList();
@@ -67,15 +69,17 @@ public class Club {
             JOptionPane.showMessageDialog(null, "Socios Regulares deben tener un fondo inicial de 50000$");
             return;
         }
+        
         //En caso de NO existir un socio con esa cédula ya puedo crearlo como nuevo socio
-        socio = new Socio(fondosDisponibles, tipoSuscripcion, cedula, nombre);
+        socio = new Socio(fondosDisponibles, tipoSuscripcion, nombre, cedula);
         socios.add(socio);
         JOptionPane.showMessageDialog(null, socio.getNombre()
-                + " bienvenido, ya eres miembro del club social");
+                + " bienvenido, ya eres miembro del club social");    
+            
 
     }
 
-    private Socio buscarSocio(String cedula) {
+    public Socio buscarSocio(String cedula) {
         for (Socio socio : this.socios) {
             if (socio.getCedula().equals(cedula)) {
                 return socio;
@@ -98,5 +102,7 @@ public class Club {
         }
         return cont <= 3;
     }
+    
+    
 
 }
