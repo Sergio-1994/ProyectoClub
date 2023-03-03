@@ -68,6 +68,7 @@ public class RegistrarSocio extends javax.swing.JFrame {
         });
 
         registrarSocio.setBackground(new java.awt.Color(1, 68, 68));
+        registrarSocio.setForeground(new java.awt.Color(255, 255, 255));
         registrarSocio.setText("Guardar");
         registrarSocio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +77,7 @@ public class RegistrarSocio extends javax.swing.JFrame {
         });
 
         regresar.setBackground(new java.awt.Color(1, 68, 68));
+        regresar.setForeground(new java.awt.Color(255, 255, 255));
         regresar.setText("Regresar");
         regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +100,7 @@ public class RegistrarSocio extends javax.swing.JFrame {
         inputSuscripcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VIP", "Regular" }));
 
         registrarPersonaAutorizada.setBackground(new java.awt.Color(1, 68, 68));
+        registrarPersonaAutorizada.setForeground(new java.awt.Color(255, 255, 255));
         registrarPersonaAutorizada.setText("Persona Autorizada");
         registrarPersonaAutorizada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +109,7 @@ public class RegistrarSocio extends javax.swing.JFrame {
         });
 
         consultar.setBackground(new java.awt.Color(1, 68, 68));
+        consultar.setForeground(new java.awt.Color(255, 255, 255));
         consultar.setText("Consultar");
         consultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,8 +203,17 @@ public class RegistrarSocio extends javax.swing.JFrame {
     private void registrarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarSocioActionPerformed
         // TODO add your handling code here:
         ValidarRegistroSocio controller = new ValidarRegistroSocio(club);
-        controller.registrarSocio(inputNombre.getText(), inputCedula.getText(), inputFondos.getText(), inputSuscripcion.getSelectedItem().toString());
-
+        boolean estado =false;
+        estado= controller.registrarSocio(inputNombre.getText(), inputCedula.getText(), inputFondos.getText(), inputSuscripcion.getSelectedItem().toString());
+        
+        System.out.println(estado);
+        
+        if (estado==true){
+            inputNombre.setText("");
+            inputCedula.setText("");
+            inputFondos.setText("");
+        }
+            
     }//GEN-LAST:event_registrarSocioActionPerformed
 
     private void inputCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputCedulaActionPerformed
@@ -219,8 +232,8 @@ public class RegistrarSocio extends javax.swing.JFrame {
         controller.consultarSocio(inputCedula.getText(), socioM);
         System.out.println(socioM.getNombre());
         inputNombre.setText(socioM.getNombre());
-
-
+        
+        
     }//GEN-LAST:event_consultarActionPerformed
 
 

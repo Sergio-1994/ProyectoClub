@@ -25,31 +25,38 @@ public class ValidarRegistroSocio {
         this.club = club;
     }
 
-    public void registrarSocio(String nombre, String cedula, String fondosDisponibles, String tipoSuscripcion) {
+    public boolean registrarSocio(String nombre, String cedula, String fondosDisponibles, String tipoSuscripcion) {
+        boolean estado = false;
         if (nombre.equals("") || nombre.equals(false)) {
             JOptionPane.showMessageDialog(null, "El campo nombre no puede estar vacio");
-            return;
+            return estado;
         }
         if (cedula.equals("") || cedula.equals(false)) {
             JOptionPane.showMessageDialog(null, "El campo cédula no puede estar vacio");
-            return;
+            return estado;
         }
         if (fondosDisponibles.equals("") || fondosDisponibles.equals(false)) {
             JOptionPane.showMessageDialog(null, "El campo fondos no puede estar vacio");
-            return;
+            return estado;
         }
 
         try {
             Double.parseDouble(fondosDisponibles);
+             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "El valor debe ser un dato numérico");
+            
+            
         }
 
         //A continuación llamamos el método registrarSocio de la clase Club
         try {
-            club.registrarSocio(nombre, cedula, fondosDisponibles, tipoSuscripcion);
+            
+            estado = club.registrarSocio(nombre, cedula, fondosDisponibles, tipoSuscripcion);
+            return estado;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR INESPERADO");
+            return estado;
         }
 
     }
@@ -63,7 +70,7 @@ public class ValidarRegistroSocio {
         try {
             socio = club.buscarSocioId(cedula);
             System.out.println(socio.getNombre());
-            return socio;
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR INESPERADO");
         }

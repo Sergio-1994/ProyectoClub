@@ -47,27 +47,29 @@ public class Club {
         return 0;
     }
 
-    public void registrarSocio(String nombre, String cedula, String fondosDisponibles, String tipoSuscripcion) {
+    public boolean registrarSocio(String nombre, String cedula, String fondosDisponibles, String tipoSuscripcion) {
         Socio socio = buscarSocio(cedula);
         boolean suscripcion = sociosVIP(tipoSuscripcion);
         if (socio != null) {
             JOptionPane.showMessageDialog(null, "Vaya ya esxite un socio con ese número de cédula!!");
-            return;
+              return false;
         }
         if (suscripcion == false) {
             JOptionPane.showMessageDialog(null, "No hay más cupos para socios VIP!!");
-            return;
+             return false;
         }
         if (suscripcion == true) {
             if (tipoSuscripcion.equals("VIP") && Double.parseDouble(fondosDisponibles) < 100000) {
                 JOptionPane.showMessageDialog(null, "Socios VIP deben tener un fondo inicial de 100000$");
-                return;
+                  return false;
+                  
             }
 
+            
         }
         if (!tipoSuscripcion.equals("VIP") && Double.parseDouble(fondosDisponibles) < 50000) {
             JOptionPane.showMessageDialog(null, "Socios Regulares deben tener un fondo inicial de 50000$");
-            return;
+            return false;
         }
         
         //En caso de NO existir un socio con esa cédula ya puedo crearlo como nuevo socio
@@ -76,7 +78,7 @@ public class Club {
         JOptionPane.showMessageDialog(null, socio.getNombre()
                 + " bienvenido, ya eres miembro del club social");    
             
-
+         return true;
     }
 
     public Socio buscarSocio(String cedula) {
