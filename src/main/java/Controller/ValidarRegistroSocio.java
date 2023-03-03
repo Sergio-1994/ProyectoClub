@@ -5,6 +5,8 @@
 package Controller;
 
 import Modelo.Club;
+import Modelo.Socio;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ValidarRegistroSocio {
@@ -52,20 +54,19 @@ public class ValidarRegistroSocio {
 
     }
 
-    public void consultarSocio(String cedula) {
+    public void consultarSocio(String cedula, Socio socio) {
         if (cedula.equals("") || cedula.equals(false)) {
             JOptionPane.showMessageDialog(null, "El campo cédula no puede estar vacio");
             return;
         }
-        
+
         try {
-            club.buscarSocioId(cedula);
-            
-           
+            socio = club.buscarSocioId(cedula);
+            System.out.println(socio.getNombre());
+            return socio;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR INESPERADO");
         }
-
     }
 
 }

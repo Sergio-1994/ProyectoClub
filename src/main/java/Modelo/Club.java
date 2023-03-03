@@ -88,14 +88,15 @@ public class Club {
         return null;
     }
     
-    public void  buscarSocioId(String cedula) {
+    public Socio  buscarSocioId(String cedula) {
         for (Socio socio : this.socios) {
             if (socio.getCedula().equals(cedula)) {
                 System.out.println(""+socio.getNombre());
+                return socio;
                 
             }
         }
-        
+        return null;
     }
 
     /**
@@ -112,6 +113,15 @@ public class Club {
         }
         return cont <= 3;
     }
+
+    public void listarPersonas() {
+        String salida = "";        
+        for(Socio interador: socios){
+            salida += interador.listarPersonas()+'\n';
+        }
+     JOptionPane.showMessageDialog(null, salida);
+    }
+    
     
     
 

@@ -25,6 +25,9 @@ public class Socio extends Persona {
         this.personasAutorizadas = new ArrayList();
     }
 
+    public Socio() {
+       }
+
     public int getIdSocio() {
         return idSocio;
     }
@@ -75,10 +78,14 @@ public class Socio extends Persona {
         return null;
     }
 
-    public void listarPersonas() {
+    public String listarPersonas() {
+        String salida = "";
         for (PersonaAutorizada personaAutorizada : this.personasAutorizadas) {
-            System.out.println("Hola: " + personaAutorizada.getNombre());
+            salida += personaAutorizada.getNombre() + "|" 
+                    + personaAutorizada.getCedula() + "|" 
+                    + personaAutorizada.getCedulaSocio()+"\n";
         }
+        return salida;
     }
 
 }

@@ -14,15 +14,15 @@ import Modelo.Socio;
  * @author RENTCOM SAS
  */
 public class RegistrarSocio extends javax.swing.JFrame {
-    
+
     private Club club;
     private Socio socio;
-    
+
     public RegistrarSocio(Club club) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.club = club;
-        
+
     }
 
     /**
@@ -200,7 +200,7 @@ public class RegistrarSocio extends javax.swing.JFrame {
         // TODO add your handling code here:
         ValidarRegistroSocio controller = new ValidarRegistroSocio(club);
         controller.registrarSocio(inputNombre.getText(), inputCedula.getText(), inputFondos.getText(), inputSuscripcion.getSelectedItem().toString());
-        
+
     }//GEN-LAST:event_registrarSocioActionPerformed
 
     private void inputCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputCedulaActionPerformed
@@ -215,7 +215,12 @@ public class RegistrarSocio extends javax.swing.JFrame {
 
     private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
         ValidarRegistroSocio controller = new ValidarRegistroSocio(club);
-        controller.consultarSocio(inputCedula.getText());
+        Socio socioM = new Socio();
+        controller.consultarSocio(inputCedula.getText(), socioM);
+        System.out.println(socioM.getNombre());
+        inputNombre.setText(socioM.getNombre());
+
+
     }//GEN-LAST:event_consultarActionPerformed
 
 
