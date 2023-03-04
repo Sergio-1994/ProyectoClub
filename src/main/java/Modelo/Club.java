@@ -17,7 +17,6 @@ public class Club {
     private ArrayList<Socio> socios;
     private ArrayList<Persona> personas;
 
-
     public Club() {
         this.socios = new ArrayList();
         this.personas = new ArrayList();
@@ -51,34 +50,57 @@ public class Club {
         Socio socio = buscarSocio(cedula);
         boolean suscripcion = sociosVIP(tipoSuscripcion);
         if (socio != null) {
-            JOptionPane.showMessageDialog(null, "Vaya ya esxite un socio con ese número de cédula!!");
-              return false;
+
+            int resp = JOptionPane.showConfirmDialog(null, "El socio ya existe desea actualizarlo?", "Confirmar salida", JOptionPane.OK_CANCEL_OPTION);
+            System.out.println(resp);
+            if (resp == 0) {
+                suscripcion = true;
+                boolean respu = Validarfondo(fondosDisponibles, tipoSuscripcion, suscripcion);
+                if (respu == true) {
+                    socio.setNombre(nombre);
+                    socio.setFondoDisponible(fondosDisponibles);
+                    return true;
+                }
+
+                return false;
+            }
+            return false;
         }
         if (suscripcion == false) {
             JOptionPane.showMessageDialog(null, "No hay más cupos para socios VIP!!");
-             return false;
-        }
-        if (suscripcion == true) {
-            if (tipoSuscripcion.equals("VIP") && Double.parseDouble(fondosDisponibles) < 100000) {
-                JOptionPane.showMessageDialog(null, "Socios VIP deben tener un fondo inicial de 100000$");
-                  return false;
-                  
-            }
-
-            
-        }
-        if (!tipoSuscripcion.equals("VIP") && Double.parseDouble(fondosDisponibles) < 50000) {
-            JOptionPane.showMessageDialog(null, "Socios Regulares deben tener un fondo inicial de 50000$");
             return false;
         }
-        
-        //En caso de NO existir un socio con esa cédula ya puedo crearlo como nuevo socio
-        socio = new Socio(fondosDisponibles, tipoSuscripcion, nombre, cedula);
-        socios.add(socio);
-        JOptionPane.showMessageDialog(null, socio.getNombre()
-                + " bienvenido, ya eres miembro del club social");    
-            
-         return true;
+
+        boolean respu = Validarfondo(fondosDisponibles, tipoSuscripcion, suscripcion);
+        if (respu == true) {
+            //En caso de NO existir un socio con esa cédula ya puedo crearlo como nuevo socio
+            socio = new Socio(fondosDisponibles, tipoSuscripcion, nombre, cedula);
+            socios.add(socio);
+            JOptionPane.showMessageDialog(null, socio.getNombre()
+                    + " bienvenido, ya eres miembro del club social");
+
+            return true;
+        }
+        return false;
+
+    }
+
+    public boolean Validarfondo(String fondosDisponibles, String tipoSuscripcion, boolean suscripcion) {
+        if (suscripcion == true) {
+            if (tipoSuscripcion.equals("VIP") && (Double.parseDouble(fondosDisponibles) < 100000 || Double.parseDouble(fondosDisponibles) > 5000000)) {
+                JOptionPane.showMessageDialog(null, "El valor del fondo del afiliado VIP no puede ser menor a 100000 y mayor a 5000000$");
+                return false;
+
+            }
+        }
+
+        if (tipoSuscripcion.equals("Regular") && (Double.parseDouble(fondosDisponibles) < 50000 || Double.parseDouble(fondosDisponibles) > 1000000)) {
+            JOptionPane.showMessageDialog(null, "El valor del fondo del afiliado regular no puede ser menor a 50000 y mayor a 1000000$");
+            return false;
+
+        }
+        return true;
+
     }
 
     public Socio buscarSocio(String cedula) {
@@ -89,13 +111,12 @@ public class Club {
         }
         return null;
     }
-    
-    public Socio  buscarSocioId(String cedula) {
+
+    public Socio buscarSocioId(String cedula) {
         for (Socio socio : this.socios) {
             if (socio.getCedula().equals(cedula)) {
-                System.out.println(""+socio.getNombre());
                 return socio;
-                
+
             }
         }
         return null;
@@ -117,14 +138,11 @@ public class Club {
     }
 
     public void listarPersonas() {
-        String salida = "";        
-        for(Socio interador: socios){
-            salida += interador.listarPersonas()+'\n';
+        String salida = "";
+        for (Socio interador : socios) {
+            salida += interador.listarPersonas() + '\n';
         }
-     JOptionPane.showMessageDialog(null, salida);
+        JOptionPane.showMessageDialog(null, salida);
     }
-    
-    
-    
 
 }

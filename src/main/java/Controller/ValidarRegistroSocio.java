@@ -61,19 +61,18 @@ public class ValidarRegistroSocio {
 
     }
 
-    public void consultarSocio(String cedula, Socio socio) {
+    public Socio consultarSocio(String cedula) {
+        
+        Socio Socio = new Socio();
         if (cedula.equals("") || cedula.equals(false)) {
             JOptionPane.showMessageDialog(null, "El campo cédula no puede estar vacio");
-            return;
-        }
-
-        try {
-            socio = club.buscarSocioId(cedula);
-            System.out.println(socio.getNombre());
             
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR INESPERADO");
+            return null;
+        }else{
+            Socio = club.buscarSocioId(cedula);
+            return Socio;
         }
+            
     }
 
 }

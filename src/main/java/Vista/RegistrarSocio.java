@@ -98,6 +98,11 @@ public class RegistrarSocio extends javax.swing.JFrame {
         labelSuscripcion.setText("Tipo Suscripción:");
 
         inputSuscripcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VIP", "Regular" }));
+        inputSuscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputSuscripcionActionPerformed(evt);
+            }
+        });
 
         registrarPersonaAutorizada.setBackground(new java.awt.Color(1, 68, 68));
         registrarPersonaAutorizada.setForeground(new java.awt.Color(255, 255, 255));
@@ -228,13 +233,21 @@ public class RegistrarSocio extends javax.swing.JFrame {
 
     private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
         ValidarRegistroSocio controller = new ValidarRegistroSocio(club);
-        Socio socioM = new Socio();
-        controller.consultarSocio(inputCedula.getText(), socioM);
-        System.out.println(socioM.getNombre());
-        inputNombre.setText(socioM.getNombre());
+        Socio socio = new Socio();
+        
+        socio = controller.consultarSocio(inputCedula.getText());
+               
+        if (socio != null){
+            inputNombre.setText(socio.getNombre());
+            inputFondos.setText(socio.getFondoDisponible());
+        }
         
         
     }//GEN-LAST:event_consultarActionPerformed
+
+    private void inputSuscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSuscripcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputSuscripcionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
