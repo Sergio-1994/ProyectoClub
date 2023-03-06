@@ -26,7 +26,7 @@ public class Socio extends Persona {
     }
 
     public Socio() {
-       }
+    }
 
     public int getIdSocio() {
         return idSocio;
@@ -81,9 +81,9 @@ public class Socio extends Persona {
     public String listarPersonas() {
         String salida = "";
         for (PersonaAutorizada personaAutorizada : this.personasAutorizadas) {
-            salida += personaAutorizada.getNombre() + "|" 
-                    + personaAutorizada.getCedula() + "|" 
-                    + personaAutorizada.getCedulaSocio()+"\n";
+            salida += personaAutorizada.getNombre() + "|"
+                    + personaAutorizada.getCedula() + "|"
+                    + personaAutorizada.getCedulaSocio() + "\n";
         }
         return salida;
     }

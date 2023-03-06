@@ -47,37 +47,21 @@ public class Club {
     }
 
     public boolean registrarSocio(String nombre, String cedula, String fondosDisponibles, String tipoSuscripcion) {
-        Socio socio = buscarSocio(cedula);
+        Socio socio = buscarSocioId(cedula);
         boolean suscripcion = sociosVIP(tipoSuscripcion);
-        if (socio != null) {
 
-            int resp = JOptionPane.showConfirmDialog(null, "El socio ya existe desea actualizarlo?", "Confirmar salida", JOptionPane.OK_CANCEL_OPTION);
-            System.out.println(resp);
-            if (resp == 0) {
-                suscripcion = true;
-                boolean respu = Validarfondo(fondosDisponibles, tipoSuscripcion, suscripcion);
-                if (respu == true) {
-                    socio.setNombre(nombre);
-                    socio.setFondoDisponible(fondosDisponibles);
-                    return true;
-                }
-
-                return false;
-            }
-            return false;
-        }
         if (suscripcion == false) {
             JOptionPane.showMessageDialog(null, "No hay más cupos para socios VIP!!");
             return false;
         }
 
-        boolean respu = Validarfondo(fondosDisponibles, tipoSuscripcion, suscripcion);
-        if (respu == true) {
+        boolean respuesta = validarFondo(fondosDisponibles, tipoSuscripcion, suscripcion);
+        if (respuesta == true) {
             //En caso de NO existir un socio con esa cédula ya puedo crearlo como nuevo socio
             socio = new Socio(fondosDisponibles, tipoSuscripcion, nombre, cedula);
             socios.add(socio);
             JOptionPane.showMessageDialog(null, socio.getNombre()
-                    + " bienvenido, ya eres miembro del club social");
+                    + " bienvenid@, ya eres miembro del club social");
 
             return true;
         }
@@ -85,7 +69,62 @@ public class Club {
 
     }
 
-    public boolean Validarfondo(String fondosDisponibles, String tipoSuscripcion, boolean suscripcion) {
+    public boolean editarSocio(String cedula, String fondosDisponibles, String tipoSuscripcion, int respuesta) {
+        boolean suscripcion = sociosVIP(tipoSuscripcion);
+        Socio socio = buscarSocioId(cedula);
+        boolean response = false;
+
+        if (respuesta == 0 && suscripcion == true) {
+            response = validarFondo(fondosDisponibles, tipoSuscripcion, suscripcion);
+        }
+
+        if (response == true
+                && !socio.getCedula().equals(cedula)
+                && !socio.getFondoDisponible().equals(fondosDisponibles)
+                && socio.getTipoSuscripcion().equals(tipoSuscripcion)) {
+
+            socio.setFondoDisponible(fondosDisponibles);
+            JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
+            return true;
+        }
+
+        if (response == true
+                && socio.getCedula().equals(cedula)
+                && !socio.getFondoDisponible().equals(fondosDisponibles)
+                && socio.getTipoSuscripcion().equals(tipoSuscripcion)) {
+
+            socio.setFondoDisponible(fondosDisponibles);
+            JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
+            return true;
+        }
+
+        if (response == true && socio.getCedula().equals(cedula)) {
+            JOptionPane.showMessageDialog(null, "La cédula del socio ingresado ya existe");
+            return false;
+        }
+
+        return false;
+    }
+
+    /**
+     * Método para listar las personas autorizadas
+     */
+    public void listarPersonas() {
+        String salida = "";
+        for (Socio interador : socios) {
+            salida += interador.listarPersonas() + '\n';
+        }
+        JOptionPane.showMessageDialog(null, salida);
+    }
+
+    /**
+     * Método para validar el fondo de los socios registrados
+     * @param fondosDisponibles
+     * @param tipoSuscripcion
+     * @param suscripcion
+     * @return 
+     */
+    public boolean validarFondo(String fondosDisponibles, String tipoSuscripcion, boolean suscripcion) {
         if (suscripcion == true) {
             if (tipoSuscripcion.equals("VIP") && (Double.parseDouble(fondosDisponibles) < 100000 || Double.parseDouble(fondosDisponibles) > 5000000)) {
                 JOptionPane.showMessageDialog(null, "El valor del fondo del afiliado VIP no puede ser menor a 100000 y mayor a 5000000$");
@@ -103,15 +142,11 @@ public class Club {
 
     }
 
-    public Socio buscarSocio(String cedula) {
-        for (Socio socio : this.socios) {
-            if (socio.getCedula().equals(cedula)) {
-                return socio;
-            }
-        }
-        return null;
-    }
-
+    /**
+     * Método para filtrar los socios por cédula
+     * @param cedula
+     * @return 
+     */
     public Socio buscarSocioId(String cedula) {
         for (Socio socio : this.socios) {
             if (socio.getCedula().equals(cedula)) {
@@ -136,13 +171,4 @@ public class Club {
         }
         return cont <= 3;
     }
-
-    public void listarPersonas() {
-        String salida = "";
-        for (Socio interador : socios) {
-            salida += interador.listarPersonas() + '\n';
-        }
-        JOptionPane.showMessageDialog(null, salida);
-    }
-
 }

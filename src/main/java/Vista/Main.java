@@ -48,7 +48,7 @@ public class Main extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(51, 153, 255));
         jPanel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        btnInicio.setText("Iniciar Sesion");
+        btnInicio.setText("Ir al Club");
         btnInicio.setBorder(new javax.swing.border.MatteBorder(null));
         btnInicio.setBorderPainted(false);
         btnInicio.addActionListener(new java.awt.event.ActionListener() {
