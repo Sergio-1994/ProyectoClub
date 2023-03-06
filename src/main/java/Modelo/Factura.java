@@ -15,13 +15,18 @@ public class Factura {
     private String concepto;
     private double valor;
     private Date fechaFactura;
-    private ArrayList<Socio> socios;
+    private String cedulaSocio;
 
-    public Factura(String concepto, double valor, ArrayList<Socio> socios) {
+
+    public Factura(String concepto, double valor,String cedulaSocio) {
         this.concepto = concepto;
         this.valor = valor;
-        this.socios = socios;
+        this.cedulaSocio = cedulaSocio;
         this.fechaFactura = new Date();
+    }
+
+    public Factura() {
+        
     }
 
     public String getConcepto() {
@@ -40,11 +45,21 @@ public class Factura {
         this.valor = valor;
     }
 
-    public ArrayList<Socio> getSocios() {
-        return socios;
+    public Date getFechaFactura() {
+        return fechaFactura;
     }
 
-    public void setSocios(ArrayList<Socio> socios) {
-        this.socios = socios;
+    public void setFechaFactura(Date fechaFactura) {
+        this.fechaFactura = fechaFactura;
     }
+
+    public String getCedulaSocio() {
+        return cedulaSocio;
+    }
+
+    public void setCedulaSocio(String cedulaSocio) {
+        this.cedulaSocio = cedulaSocio;
+    }
+
+
 }

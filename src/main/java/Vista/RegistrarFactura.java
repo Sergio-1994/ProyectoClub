@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Controller.ValidarRegistroFactura;
 import Modelo.Club;
 
 /**
@@ -51,12 +52,18 @@ public class RegistrarFactura extends javax.swing.JFrame {
         jLabel2.setText("Tipo de Servicio");
 
         tipoServicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Piscina", "Restaurante", "Disco Bar", "Cancha de futbol" }));
+        tipoServicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoServicioActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Valor por Servicio");
 
         jLabel4.setText("Cédula Cliente");
 
         regresar.setBackground(new java.awt.Color(1, 68, 68));
+        regresar.setForeground(new java.awt.Color(255, 255, 255));
         regresar.setText("Regresar");
         regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,6 +72,7 @@ public class RegistrarFactura extends javax.swing.JFrame {
         });
 
         registrarConsumo.setBackground(new java.awt.Color(1, 68, 68));
+        registrarConsumo.setForeground(new java.awt.Color(255, 255, 255));
         registrarConsumo.setText("Registrar Consumo");
         registrarConsumo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,8 +187,15 @@ public class RegistrarFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_regresarActionPerformed
 
     private void registrarConsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarConsumoActionPerformed
-        // TODO add your handling code here:
+        ValidarRegistroFactura controller = new ValidarRegistroFactura(club);
+        boolean estado = false;
+        estado = controller.registrarFactura((String) tipoServicio.getSelectedItem(), valor.getText(), cliente.getText());
+        
     }//GEN-LAST:event_registrarConsumoActionPerformed
+
+    private void tipoServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoServicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipoServicioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
