@@ -7,6 +7,7 @@ package Vista;
 import Controller.ValidarRegistroSocio;
 import Modelo.Club;
 import Modelo.Socio;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,8 +46,10 @@ public class RegistrarSocio extends javax.swing.JFrame {
         labelSuscripcion = new javax.swing.JLabel();
         inputSuscripcion = new javax.swing.JComboBox<>();
         registrarPersonaAutorizada = new javax.swing.JButton();
-        consultar = new javax.swing.JButton();
+        eliminarSocio = new javax.swing.JButton();
         realizarGasto = new javax.swing.JButton();
+        actualizarMonto = new javax.swing.JButton();
+        consultar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 102));
@@ -69,7 +72,7 @@ public class RegistrarSocio extends javax.swing.JFrame {
 
         registrarSocio.setBackground(new java.awt.Color(1, 68, 68));
         registrarSocio.setForeground(new java.awt.Color(255, 255, 255));
-        registrarSocio.setText("Guardar");
+        registrarSocio.setText("Registrar Socio");
         registrarSocio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registrarSocioActionPerformed(evt);
@@ -114,12 +117,12 @@ public class RegistrarSocio extends javax.swing.JFrame {
             }
         });
 
-        consultar.setBackground(new java.awt.Color(1, 68, 68));
-        consultar.setForeground(new java.awt.Color(255, 255, 255));
-        consultar.setText("Consultar");
-        consultar.addActionListener(new java.awt.event.ActionListener() {
+        eliminarSocio.setBackground(new java.awt.Color(1, 68, 68));
+        eliminarSocio.setForeground(new java.awt.Color(255, 255, 255));
+        eliminarSocio.setText("Eliminar Socio");
+        eliminarSocio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultarActionPerformed(evt);
+                eliminarSocioActionPerformed(evt);
             }
         });
 
@@ -129,6 +132,24 @@ public class RegistrarSocio extends javax.swing.JFrame {
         realizarGasto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 realizarGastoActionPerformed(evt);
+            }
+        });
+
+        actualizarMonto.setBackground(new java.awt.Color(1, 68, 68));
+        actualizarMonto.setForeground(new java.awt.Color(255, 255, 255));
+        actualizarMonto.setText("Actualizar saldo");
+        actualizarMonto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarMontoActionPerformed(evt);
+            }
+        });
+
+        consultar1.setBackground(new java.awt.Color(1, 68, 68));
+        consultar1.setForeground(new java.awt.Color(255, 255, 255));
+        consultar1.setText("Consultar Socio");
+        consultar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultar1ActionPerformed(evt);
             }
         });
 
@@ -142,27 +163,33 @@ public class RegistrarSocio extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelCedula)
-                            .addComponent(labelFondos)
-                            .addComponent(labelSuscripcion)
-                            .addComponent(labelNombre))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(inputCedula, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(inputFondos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(inputSuscripcion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(inputNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(registrarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(regresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(consultar, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
-                            .addComponent(realizarGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(registrarPersonaAutorizada))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelCedula)
+                                    .addComponent(labelFondos)
+                                    .addComponent(labelSuscripcion)
+                                    .addComponent(labelNombre))
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(inputCedula, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(inputFondos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(inputSuscripcion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(inputNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(registrarSocio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(actualizarMonto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(consultar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(eliminarSocio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(realizarGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59)
+                                .addComponent(registrarPersonaAutorizada)))
                         .addGap(58, 58, 58))))
         );
         layout.setVerticalGroup(
@@ -173,35 +200,31 @@ public class RegistrarSocio extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(regresar)
-                    .addComponent(labelNombre))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(consultar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(registrarSocio))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelCedula)
-                            .addComponent(inputCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(inputFondos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelFondos))
-                        .addGap(30, 30, 30)
-                        .addComponent(labelSuscripcion))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(realizarGasto)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(registrarPersonaAutorizada)
-                            .addComponent(inputSuscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(68, Short.MAX_VALUE))
+                    .addComponent(labelNombre)
+                    .addComponent(registrarSocio))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelCedula)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(inputCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(actualizarMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(inputFondos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(consultar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelFondos))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSuscripcion)
+                    .addComponent(inputSuscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eliminarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registrarPersonaAutorizada)
+                    .addComponent(realizarGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(regresar))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         labelCedula.getAccessibleContext().setAccessibleName("nombre");
@@ -228,8 +251,7 @@ public class RegistrarSocio extends javax.swing.JFrame {
         ValidarRegistroSocio controller = new ValidarRegistroSocio(club);
         boolean estado =false;
         estado= controller.registrarSocio(inputNombre.getText(), inputCedula.getText(), inputFondos.getText(), inputSuscripcion.getSelectedItem().toString());
-        
-        System.out.println(estado);
+       
         
         if (estado==true){
             inputNombre.setText("");
@@ -249,7 +271,7 @@ public class RegistrarSocio extends javax.swing.JFrame {
         this.show(false);
     }//GEN-LAST:event_registrarPersonaAutorizadaActionPerformed
 
-    private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
+    private void eliminarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarSocioActionPerformed
         ValidarRegistroSocio controller = new ValidarRegistroSocio(club);
         Socio socio = new Socio();
         
@@ -262,7 +284,7 @@ public class RegistrarSocio extends javax.swing.JFrame {
         }
         
         
-    }//GEN-LAST:event_consultarActionPerformed
+    }//GEN-LAST:event_eliminarSocioActionPerformed
 
     private void inputSuscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSuscripcionActionPerformed
         // TODO add your handling code here:
@@ -274,9 +296,20 @@ public class RegistrarSocio extends javax.swing.JFrame {
         this.show(false);
     }//GEN-LAST:event_realizarGastoActionPerformed
 
+    private void actualizarMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarMontoActionPerformed
+        ValidarRegistroSocio controller = new ValidarRegistroSocio(club);
+        controller.actualizarMonto();
+    }//GEN-LAST:event_actualizarMontoActionPerformed
+
+    private void consultar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_consultar1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton consultar;
+    private javax.swing.JButton actualizarMonto;
+    private javax.swing.JButton consultar1;
+    private javax.swing.JButton eliminarSocio;
     private javax.swing.JTextField inputCedula;
     private javax.swing.JTextField inputFondos;
     private javax.swing.JTextField inputNombre;

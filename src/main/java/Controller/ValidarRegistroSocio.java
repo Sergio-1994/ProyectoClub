@@ -29,7 +29,6 @@ public class ValidarRegistroSocio {
     public boolean registrarSocio(String nombre, String cedula, String fondosDisponibles, String tipoSuscripcion) {
         boolean estado = false;
         socio = club.buscarSocioId(cedula);
-        int respuesta;
 
         if (nombre.equals("") || nombre.equals(false)) {
             JOptionPane.showMessageDialog(null, "El campo nombre no puede estar vacio");
@@ -43,51 +42,7 @@ public class ValidarRegistroSocio {
             JOptionPane.showMessageDialog(null, "El campo fondos no puede estar vacio");
             return estado;
         }
-        //*********************************       
 
-        if ((socio != null
-                && socio.getCedula().equals(cedula))
-                && tipoSuscripcion.equals("VIP")
-                && socio.getFondoDisponible().equals(fondosDisponibles)) {
-            JOptionPane.showMessageDialog(null, "La cédula del socio VIP ingresado ya existe");
-            return false;
-
-        }
-
-        //***********************************
-        if ((socio != null
-                && socio.getCedula().equals(cedula))
-                && tipoSuscripcion.equals("Regular")
-                && socio.getFondoDisponible().equals(fondosDisponibles)) {
-
-            JOptionPane.showMessageDialog(null, "La cédula del socio Regular ingresado ya existe");
-            return false;
-
-        }
-
-        if ((socio != null && socio.getCedula().equals(cedula))
-                && !socio.getFondoDisponible().equals(fondosDisponibles)
-                && tipoSuscripcion.equals("VIP")) {
-            respuesta = JOptionPane.showConfirmDialog(null, "Desea actualizar el monto del socio "
-                    + tipoSuscripcion + "?",
-                    "Confirmar salida", JOptionPane.OK_CANCEL_OPTION);
-
-            return club.editarSocio(cedula, fondosDisponibles, tipoSuscripcion, respuesta);
-
-        }
-
-        if ((socio != null && socio.getCedula().equals(cedula))
-                && !socio.getFondoDisponible().equals(fondosDisponibles)
-                && tipoSuscripcion.equals("Regular")) {
-            respuesta = JOptionPane.showConfirmDialog(null, "Desea actualizar el monto del socio "
-                    + tipoSuscripcion + "?",
-                    "Confirmar salida", JOptionPane.OK_CANCEL_OPTION);
-
-            return club.editarSocio(cedula, fondosDisponibles, tipoSuscripcion, respuesta);
-
-        }
-
-        //*********************************
         try {
             Double.parseDouble(fondosDisponibles);
 
@@ -108,11 +63,45 @@ public class ValidarRegistroSocio {
 
     }
 
-    public Socio consultarSocio(String cedula) {
-        //Socio socio = new Socio();
+    /**
+     * Método para actualizar el monto del socio
+     */
+    public void actualizarMonto() {
+        String cedula;
+        double monto;
+        cedula = JOptionPane.showInputDialog("Ingrese la cédula del socio correspondiente");
+        monto = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el monto"));
 
         if (cedula.equals("") || cedula.equals(false)) {
             JOptionPane.showMessageDialog(null, "El campo cédula no puede estar vacio");
+            return;
+        }
+
+        if (Double.parseDouble(cedula) < 0) {
+            JOptionPane.showMessageDialog(null, "El campo cédula no puede ser un número negativo");
+            return;
+        }
+        if (monto < 0) {
+            JOptionPane.showMessageDialog(null, "El campo monto no puede ser un número negativo");
+            return;
+        }
+        consultarSocio(cedula);
+
+        if(club.actualizarMonto(cedula, monto)){
+           JOptionPane.showMessageDialog(null, "Monto actualizado correctamente"); 
+        }
+        
+
+    }
+
+    public Socio consultarSocio(String cedula) {
+
+        if (cedula.equals("") || cedula.equals(false)) {
+            JOptionPane.showMessageDialog(null, "El campo cédula no puede estar vacio");
+            return null;
+        }
+        if (club.buscarSocioId(cedula) == null) {
+            JOptionPane.showMessageDialog(null, "No existe un socio con ese número de cédula");
             return null;
         } else {
             socio = club.buscarSocioId(cedula);

@@ -33,31 +33,39 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelCedula" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelFondos" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelSuscripcion" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelNombre" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                              <Component id="inputCedula" alignment="1" min="-2" pref="210" max="-2" attributes="0"/>
-                              <Component id="inputFondos" alignment="1" min="-2" pref="210" max="-2" attributes="0"/>
-                              <Component id="inputSuscripcion" alignment="1" min="-2" pref="210" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="labelCedula" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelFondos" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelSuscripcion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelNombre" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                      <Component id="inputCedula" alignment="1" min="-2" pref="210" max="-2" attributes="0"/>
+                                      <Component id="inputFondos" alignment="1" min="-2" pref="210" max="-2" attributes="0"/>
+                                      <Component id="inputSuscripcion" alignment="1" min="-2" pref="210" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="inputNombre" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="24" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="registrarSocio" alignment="1" min="-2" pref="132" max="-2" attributes="0"/>
+                                  <Component id="actualizarMonto" alignment="1" min="-2" pref="132" max="-2" attributes="0"/>
+                                  <Component id="consultar1" alignment="1" min="-2" pref="132" max="-2" attributes="0"/>
+                                  <Component id="eliminarSocio" alignment="1" min="-2" pref="132" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="inputNombre" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="23" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="registrarSocio" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="regresar" alignment="0" max="32767" attributes="0"/>
-                              <Component id="consultar" pref="132" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="regresar" min="-2" pref="132" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="realizarGasto" min="-2" pref="132" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                              <Component id="registrarPersonaAutorizada" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="realizarGasto" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
-                          <Component id="registrarPersonaAutorizada" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                   </Group>
@@ -73,45 +81,38 @@
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="inputNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="regresar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="registrarSocio" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="consultar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="registrarSocio" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="labelCedula" min="-2" max="-2" attributes="0"/>
-                          <Component id="inputCedula" min="-2" max="-2" attributes="0"/>
-                      </Group>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="labelCedula" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="inputCedula" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="actualizarMonto" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="inputFondos" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelFondos" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="labelSuscripcion" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="inputFondos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="consultar1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="realizarGasto" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="registrarPersonaAutorizada" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="inputSuscripcion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="labelFondos" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="68" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelSuscripcion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="inputSuscripcion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="eliminarSocio" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="registrarPersonaAutorizada" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="realizarGasto" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="regresar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="48" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -148,7 +149,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Guardar"/>
+        <Property name="text" type="java.lang.String" value="Registrar Socio"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registrarSocioActionPerformed"/>
@@ -221,7 +222,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registrarPersonaAutorizadaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="consultar">
+    <Component class="javax.swing.JButton" name="eliminarSocio">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="44" green="44" red="1" type="rgb"/>
@@ -229,10 +230,10 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Consultar"/>
+        <Property name="text" type="java.lang.String" value="Eliminar Socio"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarSocioActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="realizarGasto">
@@ -247,6 +248,34 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="realizarGastoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="actualizarMonto">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="44" green="44" red="1" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Actualizar saldo"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarMontoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="consultar1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="44" green="44" red="1" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Consultar Socio"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultar1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -69,41 +69,18 @@ public class Club {
 
     }
 
-    public boolean editarSocio(String cedula, String fondosDisponibles, String tipoSuscripcion, int respuesta) {
-        boolean suscripcion = sociosVIP(tipoSuscripcion);
-        Socio socio = buscarSocioId(cedula);
-        boolean response = false;
-
-        if (respuesta == 0 && suscripcion == true) {
-            response = validarFondo(fondosDisponibles, tipoSuscripcion, suscripcion);
+    public boolean actualizarMonto(String cedula, double nuevoMonto) {
+        double sumMonto;
+        
+        for(Socio socio: this.socios){
+            if(socio.getCedula().equals(cedula)){
+                sumMonto = Double.parseDouble(socio.getFondoDisponible()) + nuevoMonto;
+                socio.setFondoDisponible(String.valueOf(sumMonto));
+                return true;
+            }
         }
-
-        if (response == true
-                && !socio.getCedula().equals(cedula)
-                && !socio.getFondoDisponible().equals(fondosDisponibles)
-                && socio.getTipoSuscripcion().equals(tipoSuscripcion)) {
-
-            socio.setFondoDisponible(fondosDisponibles);
-            JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
-            return true;
-        }
-
-        if (response == true
-                && socio.getCedula().equals(cedula)
-                && !socio.getFondoDisponible().equals(fondosDisponibles)
-                && socio.getTipoSuscripcion().equals(tipoSuscripcion)) {
-
-            socio.setFondoDisponible(fondosDisponibles);
-            JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
-            return true;
-        }
-
-        if (response == true && socio.getCedula().equals(cedula)) {
-            JOptionPane.showMessageDialog(null, "La cédula del socio ingresado ya existe");
-            return false;
-        }
-
         return false;
+        
     }
 
     /**
@@ -151,7 +128,6 @@ public class Club {
         for (Socio socio : this.socios) {
             if (socio.getCedula().equals(cedula)) {
                 return socio;
-
             }
         }
         return null;

@@ -8,7 +8,7 @@ package ConsumoImpl;
  *
  * @author Tatiana
  */
-public class BebidasFrias extends Bebidas{
+public abstract class BebidasFrias extends Bebidas{
     private String Marca;
 
     public BebidasFrias(String Marca, String tamaño, String nombre, double precio) {

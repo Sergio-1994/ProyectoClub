@@ -50,8 +50,8 @@ public class ValidarRegistroPersonaAutodizada {
             return;
         }
 
-        if (cedulaPersonaAutorizada.equals(cedulaSocio)) {
-            JOptionPane.showMessageDialog(null, "¡El número de cédula ingresado no puede ser igual al del socio!");
+        if (club.buscarSocioId(cedulaPersonaAutorizada) != null) {
+            JOptionPane.showMessageDialog(null, "¡El número de cédula ingresado no puede ser igual al de un socio!");
             return;
         }
 
