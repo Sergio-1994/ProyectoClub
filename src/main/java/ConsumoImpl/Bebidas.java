@@ -13,7 +13,7 @@ import Modelo.Consumo;
 public abstract class Bebidas extends Consumo {
     private String tamaño; 
 
-    public Bebidas(String tamaño, String nombre, double precio) {
+    public Bebidas(String tamaño, String nombre, String precio) {
         super(nombre, precio);
         this.tamaño = tamaño;
     }

@@ -11,7 +11,7 @@ package ConsumoImpl;
 public abstract class BebidasFrias extends Bebidas{
     private String Marca;
 
-    public BebidasFrias(String Marca, String tamaño, String nombre, double precio) {
+    public BebidasFrias(String Marca, String tamaño, String nombre, String precio) {
         super(tamaño, nombre, precio);
         this.Marca = Marca;
     }

@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import FabricaDeConsumos.FabricaDeConsumos;
 import Vista.Main;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -16,12 +17,14 @@ public class Club {
 
     private ArrayList<Socio> socios;
     private ArrayList<Persona> personas;
+   
 
     public Club() {
         this.socios = new ArrayList();
         this.personas = new ArrayList();
     }
-
+ 
+    
     public ArrayList<Socio> getSocios() {
         return socios;
     }
@@ -71,16 +74,16 @@ public class Club {
 
     public boolean actualizarMonto(String cedula, double nuevoMonto) {
         double sumMonto;
-        
-        for(Socio socio: this.socios){
-            if(socio.getCedula().equals(cedula)){
+
+        for (Socio socio : this.socios) {
+            if (socio.getCedula().equals(cedula)) {
                 sumMonto = Double.parseDouble(socio.getFondoDisponible()) + nuevoMonto;
                 socio.setFondoDisponible(String.valueOf(sumMonto));
                 return true;
             }
         }
         return false;
-        
+
     }
 
     /**
@@ -96,10 +99,11 @@ public class Club {
 
     /**
      * Método para validar el fondo de los socios registrados
+     *
      * @param fondosDisponibles
      * @param tipoSuscripcion
      * @param suscripcion
-     * @return 
+     * @return
      */
     public boolean validarFondo(String fondosDisponibles, String tipoSuscripcion, boolean suscripcion) {
         if (suscripcion == true) {
@@ -121,8 +125,9 @@ public class Club {
 
     /**
      * Método para filtrar los socios por cédula
+     *
      * @param cedula
-     * @return 
+     * @return
      */
     public Socio buscarSocioId(String cedula) {
         for (Socio socio : this.socios) {
@@ -147,4 +152,5 @@ public class Club {
         }
         return cont <= 3;
     }
+
 }

@@ -12,7 +12,7 @@ public class BebidasCalientes extends Bebidas {
     private String Adiccion;
     private double valorAdd;
 
-    public BebidasCalientes(String Adiccion, double valorAdd, String tamaño, String nombre, double precio) {
+    public BebidasCalientes(String Adiccion, double valorAdd, String tamaño, String nombre, String precio) {
         super(tamaño, nombre, precio);
         this.Adiccion = Adiccion;
         this.valorAdd = valorAdd;

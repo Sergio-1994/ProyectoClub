@@ -10,9 +10,9 @@ package Modelo;
  */
 public abstract class  Consumo {
      private String nombre;
-     private double precio;
+     private String precio;
 
-    public Consumo(String nombre, double precio) {
+    public Consumo(String nombre, String precio) {
         this.nombre = nombre;
         this.precio = precio;
     }
@@ -25,11 +25,11 @@ public abstract class  Consumo {
         this.nombre = nombre;
     }
 
-    public double getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
      

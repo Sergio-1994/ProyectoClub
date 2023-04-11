@@ -249,16 +249,15 @@ public class RegistrarSocio extends javax.swing.JFrame {
     private void registrarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarSocioActionPerformed
         // TODO add your handling code here:
         ValidarRegistroSocio controller = new ValidarRegistroSocio(club);
-        boolean estado =false;
-        estado= controller.registrarSocio(inputNombre.getText(), inputCedula.getText(), inputFondos.getText(), inputSuscripcion.getSelectedItem().toString());
-       
-        
-        if (estado==true){
+        boolean estado = false;
+        estado = controller.registrarSocio(inputNombre.getText(), inputCedula.getText(), inputFondos.getText(), inputSuscripcion.getSelectedItem().toString());
+
+        if (estado == true) {
             inputNombre.setText("");
             inputCedula.setText("");
             inputFondos.setText("");
         }
-            
+
     }//GEN-LAST:event_registrarSocioActionPerformed
 
     private void inputCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputCedulaActionPerformed
@@ -274,16 +273,16 @@ public class RegistrarSocio extends javax.swing.JFrame {
     private void eliminarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarSocioActionPerformed
         ValidarRegistroSocio controller = new ValidarRegistroSocio(club);
         Socio socio = new Socio();
-        
+
         socio = controller.consultarSocio(inputCedula.getText());
-               
-        if (socio != null){
+
+        if (socio != null) {
             inputNombre.setText(socio.getNombre());
             inputFondos.setText(socio.getFondoDisponible());
             inputSuscripcion.setSelectedItem(socio.getTipoSuscripcion());
         }
-        
-        
+
+
     }//GEN-LAST:event_eliminarSocioActionPerformed
 
     private void inputSuscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSuscripcionActionPerformed
@@ -303,6 +302,16 @@ public class RegistrarSocio extends javax.swing.JFrame {
 
     private void consultar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar1ActionPerformed
         // TODO add your handling code here:
+        ValidarRegistroSocio controller = new ValidarRegistroSocio(club);
+        Socio socio = new Socio();
+
+        socio = controller.consultarSocio(inputCedula.getText());
+
+        if (socio != null) {
+            inputNombre.setText(socio.getNombre());
+            inputFondos.setText(socio.getFondoDisponible());
+            inputSuscripcion.setSelectedItem(socio.getTipoSuscripcion());
+        }
     }//GEN-LAST:event_consultar1ActionPerformed
 
 

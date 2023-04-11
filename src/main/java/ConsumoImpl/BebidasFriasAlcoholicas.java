@@ -11,7 +11,7 @@ package ConsumoImpl;
 public class BebidasFriasAlcoholicas extends BebidasFrias {
     private double gradoAlcohol;
 
-    public BebidasFriasAlcoholicas(double gradoAlcohol, String Marca, String tamaño, String nombre, double precio) {
+    public BebidasFriasAlcoholicas(double gradoAlcohol, String Marca, String tamaño, String nombre, String precio) {
         super(Marca, tamaño, nombre, precio);
         this.gradoAlcohol = gradoAlcohol;
     }

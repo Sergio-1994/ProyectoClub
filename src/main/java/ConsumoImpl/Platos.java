@@ -13,7 +13,7 @@ import Modelo.Consumo;
 public class Platos extends Consumo {
     private int ingredientes;
 
-    public Platos(int ingredientes, String nombre, double precio) {
+    public Platos(int ingredientes, String nombre, String precio) {
         super(nombre, precio);
         this.ingredientes = ingredientes;
     }

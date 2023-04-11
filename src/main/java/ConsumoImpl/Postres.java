@@ -11,7 +11,7 @@ package ConsumoImpl;
 public class Postres extends Platos {
     
 
-    public Postres( int ingredientes, String nombre, double precio) {
+    public Postres( int ingredientes, String nombre, String precio) {
         super(ingredientes, nombre, precio);
         
     }

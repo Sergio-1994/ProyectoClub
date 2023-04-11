@@ -4,29 +4,33 @@
  */
 package Modelo;
 
+import FabricaDeConsumos.FabricaDeConsumos;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author ESTUDIANTE
  */
 public class Factura {
+
     private String concepto;
-    private double valor;
+    private String valor;
     private Date fechaFactura;
     private String cedulaSocio;
+    
+    public Factura(){
+        
+    }
 
 
-    public Factura(String concepto, double valor,String cedulaSocio) {
+    public Factura(String concepto, String valor, String cedulaSocio) {
         this.concepto = concepto;
         this.valor = valor;
         this.cedulaSocio = cedulaSocio;
         this.fechaFactura = new Date();
-    }
 
-    public Factura() {
-        
     }
 
     public String getConcepto() {
@@ -37,11 +41,11 @@ public class Factura {
         this.concepto = concepto;
     }
 
-    public double getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 
@@ -61,5 +65,20 @@ public class Factura {
         this.cedulaSocio = cedulaSocio;
     }
 
+    public Consumo registrarConsumo(String cedula, String totalPagar, String tipoBebida, int tipoServicio) {
+
+        FabricaDeConsumos fabrica = new FabricaDeConsumos();
+
+        try {
+
+            Consumo consumo = fabrica.fabricaConsumo(cedula, totalPagar, tipoBebida, tipoServicio);
+            JOptionPane.showMessageDialog(null, "Su pedido ha sido generado, por favor espere"); 
+            return consumo;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR INESPERADO");   
+            return null;
+        }
+
+    }
 
 }

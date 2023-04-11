@@ -12,7 +12,7 @@ public  class Entradas extends Platos{
     private String porcion;
     private String salsa;
 
-    public Entradas(String porcion, String salsa, int ingredientes, String nombre, double precio) {
+    public Entradas(String porcion, String salsa, int ingredientes, String nombre, String precio) {
         super(ingredientes, nombre, precio);
         this.porcion = porcion;
         this.salsa = salsa;

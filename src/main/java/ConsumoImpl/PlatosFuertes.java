@@ -12,7 +12,7 @@ public class PlatosFuertes extends Platos {
     private String BebidaNoAlcoholica;
     private String TipoPlato;
 
-    public PlatosFuertes(String BebidaNoAlcoholica, String TipoPlato, int ingredientes, String nombre, double precio) {
+    public PlatosFuertes(String BebidaNoAlcoholica, String TipoPlato, int ingredientes, String nombre, String precio) {
         super(ingredientes, nombre, precio);
         this.BebidaNoAlcoholica = BebidaNoAlcoholica;
         this.TipoPlato = TipoPlato;
