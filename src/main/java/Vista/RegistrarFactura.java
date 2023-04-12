@@ -18,7 +18,6 @@ public class RegistrarFactura extends javax.swing.JFrame {
 
     private Club club;
 
-   
     public RegistrarFactura(Club club) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -70,6 +69,8 @@ public class RegistrarFactura extends javax.swing.JFrame {
         cedulaSocio = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         totalPagar = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        porcion = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -230,41 +231,51 @@ public class RegistrarFactura extends javax.swing.JFrame {
             }
         });
 
+        jLabel19.setText("Porcion");
+
+        porcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                porcionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cedulaSocio)
-                                    .addComponent(salsa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(entrada, 0, 187, Short.MAX_VALUE)
-                                    .addComponent(postres, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(platoFuerte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(adiciones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(tipoServicio, 0, 187, Short.MAX_VALUE))))
-                        .addGap(33, 33, 33)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel11)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel19)
+                                .addComponent(jLabel6))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(31, 31, 31)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(porcion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cedulaSocio)
+                            .addComponent(salsa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(entrada, 0, 187, Short.MAX_VALUE)
+                            .addComponent(postres, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(platoFuerte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(adiciones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tipoServicio, 0, 187, Short.MAX_VALUE))))
+                .addGap(33, 33, 33)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -302,7 +313,7 @@ public class RegistrarFactura extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
@@ -331,11 +342,15 @@ public class RegistrarFactura extends javax.swing.JFrame {
                             .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(41, 41, 41)
                         .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
+                        .addGap(2, 2, 2)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(adiciones, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel19)
+                            .addComponent(porcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(adiciones, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(salsa, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)))
@@ -345,23 +360,20 @@ public class RegistrarFactura extends javax.swing.JFrame {
                             .addComponent(jLabel12)
                             .addComponent(tipoBebida, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(tipoServicio10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tipoServicio11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(86, 86, 86))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel13)
-                                    .addComponent(tipoServicio9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26)
-                                .addComponent(jLabel14)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel16)
-                                .addGap(22, 22, 22)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(tipoServicio9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(tipoServicio10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(tipoServicio11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel16)
+                        .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel17)
                             .addComponent(tipoServicio12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -411,20 +423,22 @@ public class RegistrarFactura extends javax.swing.JFrame {
 
     private void platoFuerteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_platoFuerteActionPerformed
         // TODO add your handling code here:
-        if (platoFuerte.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar un tipo de servicio");
-        }
-        if (platoFuerte.getSelectedItem().toString().equals("Mixtos")) {
-            salsa.addItem("Seleccione una opción");
-            salsa.addItem("Salsa de maiz");
-            salsa.addItem("Salsa de tomate");
-
-        }
-        if (platoFuerte.getSelectedItem().toString().equals("Veganos")) {
-            adiciones.addItem("Seleccione una opción");
-            adiciones.addItem("Brocoli");
-            adiciones.addItem("Champiñones");
-
+        Object selectedItemPlatoFuerte = platoFuerte.getSelectedItem();
+        if (selectedItemPlatoFuerte != null) {
+            if (selectedItemPlatoFuerte == "Seleccione una opción") {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar un tipo de plato fuerte");
+                totalPagar.setText("");
+            } else if (selectedItemPlatoFuerte == "Mixtos") {
+                salsa.addItem("Seleccione una opción");
+                salsa.addItem("Salsa de maiz");
+                salsa.addItem("Salsa de tomate");
+                totalPagar.setText("30000");
+            } else {
+                adiciones.addItem("Seleccione una opción");
+                adiciones.addItem("Brocoli");
+                adiciones.addItem("Champiñones");
+                totalPagar.setText("40000");
+            }
         }
 
         if (!platoFuerte.getSelectedItem().toString().equals("Veganos")) {
@@ -441,76 +455,108 @@ public class RegistrarFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_tipoServicio6ActionPerformed
 
     private void salsaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salsaActionPerformed
-        // TODO add your handling code here:
+        Object selectedItemSalsa = salsa.getSelectedItem();
+        if (selectedItemSalsa != null) {
+            if (selectedItemSalsa == "Seleccione una opción") {
+                //JOptionPane.showMessageDialog(null, "Debes seleccionar una salsa");
+            } else {
+
+            }
+        }
     }//GEN-LAST:event_salsaActionPerformed
 
     private void adicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionesActionPerformed
-        // TODO add your handling code here:
+        Object selectedItemAdicion = adiciones.getSelectedItem();
+
+        if (selectedItemAdicion != null) {
+            if (selectedItemAdicion == "Seleccione una opción") {
+                //JOptionPane.showMessageDialog(null, "Debes seleccionar una salsa");
+                totalPagar.setText("40000");
+            } else if (selectedItemAdicion == "Brocoli") {
+
+                totalPagar.setText("45000");
+
+            } else {
+                totalPagar.setText("50000");
+            }
+
+        }
     }//GEN-LAST:event_adicionesActionPerformed
 
     private void postresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postresActionPerformed
-        // TODO add your handling code here:
+        Object selectedItemPostres = postres.getSelectedItem();
+        if (selectedItemPostres != null) {
+            if (selectedItemPostres == "Seleccione una opción") {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar un postre");
+                totalPagar.setText("");
+            } else {
+                totalPagar.setText("5000");
+            }
+        }
     }//GEN-LAST:event_postresActionPerformed
 
     private void entradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaActionPerformed
-        if (entrada.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar un tipo de servicio");
-        }
+        Object selectedItementrada = entrada.getSelectedItem();
+        if (selectedItementrada != null) {
+            if (selectedItementrada == "Seleccione una opción") {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar una entrada");
+                totalPagar.setText("");
+            } else {
+                salsa.removeAllItems();
+                salsa.addItem("Seleccione una opcion");
+                salsa.addItem("Salsa de queso");
+                salsa.addItem("Guacamole");
 
-        if (entrada.getSelectedItem().toString().equals("Nachos")) {
-            salsa.addItem("Seleccione una opcion");
-            salsa.addItem("Salsa de queso");
-            salsa.addItem("Guacamole");
-            totalPagar.setText("20000");
-        }
+                porcion.removeAllItems();
+                porcion.addItem("Seleccione una opcion");
+                porcion.addItem("Unica");
+                porcion.addItem("Para compartir");
 
-        if (!entrada.getSelectedItem().toString().equals("Nachos")) {
-            salsa.removeAllItems();
+            }
+
         }
     }//GEN-LAST:event_entradaActionPerformed
 
     private void tipoServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoServicioActionPerformed
-        if (tipoServicio.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar un tipo de servicio");
-        }
+        Object selectedItem = tipoServicio.getSelectedItem();
 
-        if (tipoServicio.getSelectedIndex() == 1) {
-            entrada.addItem("Seleccione una opción");
-            entrada.addItem("Aritos de cebolla");
-            entrada.addItem("Enrrollado de peperoni");
-            entrada.addItem("Nachos");
-        }
-        if (tipoServicio.getSelectedIndex() == 2) {
-            platoFuerte.addItem("Seleccione una opción");
-            platoFuerte.addItem("Veganos");
-            platoFuerte.addItem("Mixtos");
+        System.out.println(selectedItem);
+        if (selectedItem != null) {
 
-            tipoBebida.addItem("Seleccione una opción");
-            tipoBebida.addItem("Coca-cola");
-            tipoBebida.addItem("Manzana");
-            tipoBebida.addItem("Sprite");
+            System.out.println("no es null");
+            System.out.println(selectedItem);
 
-            
-            totalPagar.setEditable(false);
-        }
+            if (selectedItem == "Seleccione el tipo de plato") {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar un tipo de servicio");
 
-        if (tipoServicio.getSelectedIndex() == 3) {
-            postres.addItem("Seleccione una opción");
-            postres.addItem("Helado de chocolate");
-            postres.addItem("Helado de tiramisu");
-        }
+            } else if (selectedItem == "Entradas") {
 
-        if (!(tipoServicio.getSelectedIndex() == 1)) {
-            entrada.removeAllItems();
-        }
+                entrada.addItem("Seleccione una opción");
+                entrada.addItem("Aritos de cebolla");
+                entrada.addItem("Enrrollado de peperoni");
+                entrada.addItem("Nachos");
 
-        if (!(tipoServicio.getSelectedIndex() == 2)) {
-            platoFuerte.removeAllItems();
-            tipoBebida.removeAllItems();
-        }
+            } else if (selectedItem == "Platos Fuertes") {
+                platoFuerte.addItem("Seleccione una opción");
+                platoFuerte.addItem("Veganos");
+                platoFuerte.addItem("Mixtos");
 
-        if (!(tipoServicio.getSelectedIndex() == 3)) {
-            postres.removeAllItems();
+                tipoBebida.addItem("Seleccione una opción");
+                tipoBebida.addItem("Coca-cola");
+                tipoBebida.addItem("Manzana");
+                tipoBebida.addItem("Sprite");
+                totalPagar.setEditable(false);
+            } else if (selectedItem == "Postres") {
+                postres.addItem("Seleccione una opción");
+                postres.addItem("Helado de chocolate");
+                postres.addItem("Helado de tiramisu");
+            }
+
+        } else {
+
+            System.out.print(tipoServicio.getSelectedIndex());
+
+            System.out.println("Entra");
         }
 
 
@@ -530,20 +576,17 @@ public class RegistrarFactura extends javax.swing.JFrame {
 
     private void ordenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordenarActionPerformed
         Factura factura = new Factura();
-           
+
         Consumo consumo = factura.registrarConsumo(cedulaSocio.getText(), totalPagar.getText(), entrada.getSelectedItem().toString(),
                 tipoServicio.getSelectedIndex());
-        
+
         factura = new Factura(consumo.getNombre(), consumo.getPrecio(), cedulaSocio.getText());
-        
-        System.out.println("Concepto: "+ factura.getConcepto() + 
-                           "\nValor: " + factura.getValor() + 
-                           "\nFecha Factura: " + factura.getFechaFactura());
-        
-        
-        
-        
-        
+
+        System.out.println("Concepto: " + factura.getConcepto()
+                + "\nValor: " + factura.getValor()
+                + "\nFecha Factura: " + factura.getFechaFactura());
+
+
     }//GEN-LAST:event_ordenarActionPerformed
 
     private void regresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresar1ActionPerformed
@@ -562,6 +605,24 @@ public class RegistrarFactura extends javax.swing.JFrame {
 
     }//GEN-LAST:event_totalPagarActionPerformed
 
+    private void porcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_porcionActionPerformed
+        Object selectedItemPorcion = porcion.getSelectedItem();
+        if (selectedItemPorcion != null) {
+            if (selectedItemPorcion == "Seleccione una opcion") {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar una porcion");
+                totalPagar.setText("");
+
+            } else if (selectedItemPorcion == "Unica") {
+
+                totalPagar.setText("10000");
+
+            } else {
+                totalPagar.setText("20000");
+            }
+
+        }
+    }//GEN-LAST:event_porcionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> adiciones;
@@ -577,6 +638,7 @@ public class RegistrarFactura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -589,6 +651,7 @@ public class RegistrarFactura extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton ordenar;
     private javax.swing.JComboBox<String> platoFuerte;
+    private javax.swing.JComboBox<String> porcion;
     private javax.swing.JComboBox<String> postres;
     private javax.swing.JButton regresar1;
     private javax.swing.JComboBox<String> salsa;
