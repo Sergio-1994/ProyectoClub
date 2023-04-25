@@ -52,6 +52,16 @@ public class Socio extends Persona {
         this.tipoSuscripcion = tipoSuscripcion;
     }
 
+    public ArrayList<PersonaAutorizada> getPersonasAutorizadas() {
+        return personasAutorizadas;
+    }
+
+    public void setPersonasAutorizadas(ArrayList<PersonaAutorizada> personasAutorizadas) {
+        this.personasAutorizadas = personasAutorizadas;
+    }
+    
+    
+
     public void registrarPersonaAutorizada(String nombrePersonaAutorizada, String cedulaPersonaAutorizada, String cedulaSocio) {
 
         PersonaAutorizada personaAutorizada = buscarPersonaAutorizada(cedulaPersonaAutorizada);
@@ -64,7 +74,7 @@ public class Socio extends Persona {
         personaAutorizada = new PersonaAutorizada(nombrePersonaAutorizada, cedulaPersonaAutorizada, cedulaSocio);
         personasAutorizadas.add(personaAutorizada);
         JOptionPane.showMessageDialog(null, personaAutorizada.getNombre()
-                + " bienvenido, ya eres una persona autorizada");
+                + " bienvenid@, ya eres una persona autorizada");
         listarPersonas();
 
     }

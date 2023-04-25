@@ -11,19 +11,20 @@ import java.util.ArrayList;
  * @author ESTUDIANTE
  */
 public class Persona {
-    
+
     private String nombre;
     private String cedula;
- 
+
     private ArrayList<Factura> factura;
+
+    public Persona() {
+
+    }
 
     public Persona(String nombre, String cedula) {
         this.nombre = nombre;
-        this.cedula = cedula;        
+        this.cedula = cedula;
         this.factura = new ArrayList();
-    }
-    public Persona(){
-        
     }
 
     public String getNombre() {
@@ -50,11 +51,19 @@ public class Persona {
         this.factura = factura;
     }
 
-   
+    public String listarFacturas() {
+        String salida = "";
+        for (Factura iterador : this.factura) {
+            salida += iterador.getCedulaSocio() + "|"
+                    + iterador.getConcepto() + "|"
+                    + iterador.getValor() + "|"
+                    + iterador.isEstado() + "\n";
+        }
+
+        return salida;
+    }
+
+
     
-    
-    
-    
-    
-    
+
 }

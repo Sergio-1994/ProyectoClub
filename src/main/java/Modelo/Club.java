@@ -17,14 +17,12 @@ public class Club {
 
     private ArrayList<Socio> socios;
     private ArrayList<Persona> personas;
-   
 
     public Club() {
         this.socios = new ArrayList();
         this.personas = new ArrayList();
     }
- 
-    
+
     public ArrayList<Socio> getSocios() {
         return socios;
     }
@@ -151,6 +149,90 @@ public class Club {
             }
         }
         return cont <= 3;
+    }
+
+    public void crearFactura(String cedula, int tipoServicio, String entrada, int porcion, String totalPagar) {
+        Persona socio = buscarSocioId(cedula);
+        Persona pesonaAutorizada = buscarPersonaAutorizada(cedula);
+
+        if (consultarFondoActual(cedula) <= Double.parseDouble(totalPagar)) {
+            JOptionPane.showMessageDialog(null, "¡Vaya no tienes saldo disponible ");
+            return;
+        }
+        if (consultarFondoActual(cedula) >= Double.parseDouble(totalPagar)) {
+            pagarFactura(totalPagar);
+        }
+
+        if (socio != null) {
+
+            FabricaDeConsumos fabrica = new FabricaDeConsumos();
+            Consumo consumo = fabrica.fabricaConsumo(cedula, tipoServicio, entrada, porcion, totalPagar);
+
+            Factura factura = new Factura(consumo.getNombre(), consumo.getPrecio(), cedula);
+            socio.getFactura().add(factura);
+            factura.setEstado(false);
+
+            JOptionPane.showMessageDialog(null, "Se generó el pedido a nombre de " + socio.getNombre());
+        }
+        if (pesonaAutorizada != null) {
+
+            FabricaDeConsumos fabrica = new FabricaDeConsumos();
+            Consumo consumo = fabrica.fabricaConsumo(cedula, tipoServicio, entrada, porcion, totalPagar);
+
+            Factura factura = new Factura(consumo.getNombre(), consumo.getPrecio(), cedula);
+            pesonaAutorizada.getFactura().add(factura);
+            factura.setEstado(false);
+
+            JOptionPane.showMessageDialog(null, "Se generó el pedido a nombre de " + pesonaAutorizada.getNombre());
+        }
+
+    }
+
+    public void listarFacturas() {
+        String salida = "";
+        for (Persona iterador : socios) {
+            salida += iterador.listarFacturas() + "\n";
+
+        }
+        JOptionPane.showMessageDialog(null, salida);
+    }
+
+    public Double consultarFondoActual(String cedula) {
+        for (Socio socio : this.socios) {
+            for (PersonaAutorizada persona : socio.getPersonasAutorizadas()) {
+                if (socio.getCedula().equals(cedula) || persona.getCedula().equals(cedula)) {
+                    return Double.parseDouble(socio.getFondoDisponible());
+                }
+            }
+
+        }
+        return null;
+    }
+    
+    public void pagarFactura(String valorFactura){
+        double saldoActual;
+        for(Socio socio: socios){
+            saldoActual = (Double.parseDouble(socio.getFondoDisponible()) - Double.parseDouble(valorFactura));
+            socio.setFondoDisponible(String.valueOf(saldoActual));
+            return;
+        }
+    }
+
+    public PersonaAutorizada buscarPersonaAutorizada(String cedula) {
+        for (Socio socio : this.socios) {
+            PersonaAutorizada pesonaAutorizada = socio.buscarPersonaAutorizada(cedula);
+            return pesonaAutorizada;
+        }
+        return null;
+    }
+
+    public void listarTodasLasPersonas() {
+        for (Socio persona : socios) {
+            for (PersonaAutorizada p : persona.getPersonasAutorizadas()) {
+                System.out.println(p.getNombre());
+                System.out.println(persona.getNombre());
+            }
+        }
     }
 
 }

@@ -16,6 +16,7 @@ public class PersonaAutorizada extends Persona{
         super(nombre, cedula);
         this.cedulaSocio = cedulaSocio;
     }
+    
 
     public String getCedulaSocio() {
         return cedulaSocio;

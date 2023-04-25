@@ -19,6 +19,7 @@ public class Factura {
     private String valor;
     private Date fechaFactura;
     private String cedulaSocio;
+    private boolean estado;
     
     public Factura(){
         
@@ -30,8 +31,18 @@ public class Factura {
         this.valor = valor;
         this.cedulaSocio = cedulaSocio;
         this.fechaFactura = new Date();
+        this.estado = true;
 
     }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+    
 
     public String getConcepto() {
         return concepto;
@@ -65,20 +76,5 @@ public class Factura {
         this.cedulaSocio = cedulaSocio;
     }
 
-    public Consumo registrarConsumo(String cedula, String totalPagar, String tipoBebida, int tipoServicio) {
-
-        FabricaDeConsumos fabrica = new FabricaDeConsumos();
-
-        try {
-
-            Consumo consumo = fabrica.fabricaConsumo(cedula, totalPagar, tipoBebida, tipoServicio);
-            JOptionPane.showMessageDialog(null, "Su pedido ha sido generado, por favor espere"); 
-            return consumo;
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR INESPERADO");   
-            return null;
-        }
-
-    }
 
 }

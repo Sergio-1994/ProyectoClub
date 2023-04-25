@@ -18,12 +18,12 @@ public class FabricaDeConsumos {
 
     }
 
-    public Consumo fabricaConsumo(String cedula, String totalPagar, String tipoBebida, int tipoServicio) {
+    public Consumo fabricaConsumo( String cedula, int tipoServicio, String entrada, int porcion, String totalPagar) {
 
         switch (tipoServicio) {
 
             case 1: {
-                return new Entradas("Unica", "Tomate", 5, "Nachos", totalPagar);
+                return new Entradas("Unica", "Tomate", 5, entrada, totalPagar);
             }
 
             default: {

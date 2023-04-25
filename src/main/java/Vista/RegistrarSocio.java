@@ -47,9 +47,10 @@ public class RegistrarSocio extends javax.swing.JFrame {
         inputSuscripcion = new javax.swing.JComboBox<>();
         registrarPersonaAutorizada = new javax.swing.JButton();
         eliminarSocio = new javax.swing.JButton();
-        realizarGasto = new javax.swing.JButton();
+        verFacturas = new javax.swing.JButton();
         actualizarMonto = new javax.swing.JButton();
         consultar1 = new javax.swing.JButton();
+        realizarGasto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 102));
@@ -126,12 +127,12 @@ public class RegistrarSocio extends javax.swing.JFrame {
             }
         });
 
-        realizarGasto.setBackground(new java.awt.Color(1, 68, 68));
-        realizarGasto.setForeground(new java.awt.Color(255, 255, 255));
-        realizarGasto.setText("Realizar gasto");
-        realizarGasto.addActionListener(new java.awt.event.ActionListener() {
+        verFacturas.setBackground(new java.awt.Color(1, 68, 68));
+        verFacturas.setForeground(new java.awt.Color(255, 255, 255));
+        verFacturas.setText("Ver facturas");
+        verFacturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                realizarGastoActionPerformed(evt);
+                verFacturasActionPerformed(evt);
             }
         });
 
@@ -153,6 +154,15 @@ public class RegistrarSocio extends javax.swing.JFrame {
             }
         });
 
+        realizarGasto.setBackground(new java.awt.Color(1, 68, 68));
+        realizarGasto.setForeground(new java.awt.Color(255, 255, 255));
+        realizarGasto.setText("Realizar gasto");
+        realizarGasto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                realizarGastoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,14 +181,13 @@ public class RegistrarSocio extends javax.swing.JFrame {
                                     .addComponent(labelFondos)
                                     .addComponent(labelSuscripcion)
                                     .addComponent(labelNombre))
-                                .addGap(27, 27, 27)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(inputCedula, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(inputFondos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(inputSuscripcion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(inputNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                                    .addComponent(inputFondos, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(inputSuscripcion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(inputNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(inputCedula))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(registrarSocio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(actualizarMonto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -186,9 +195,11 @@ public class RegistrarSocio extends javax.swing.JFrame {
                                     .addComponent(eliminarSocio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(verFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(realizarGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(59, 59, 59)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                                 .addComponent(registrarPersonaAutorizada)))
                         .addGap(58, 58, 58))))
         );
@@ -222,8 +233,9 @@ public class RegistrarSocio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registrarPersonaAutorizada)
-                    .addComponent(realizarGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(regresar))
+                    .addComponent(verFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(regresar)
+                    .addComponent(realizarGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
@@ -289,11 +301,10 @@ public class RegistrarSocio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputSuscripcionActionPerformed
 
-    private void realizarGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realizarGastoActionPerformed
-        RegistrarFactura factura = new RegistrarFactura(club);
-        factura.show();
-        this.show(false);
-    }//GEN-LAST:event_realizarGastoActionPerformed
+    private void verFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verFacturasActionPerformed
+        //club.listarFacturas();
+        club.listarTodasLasPersonas();
+    }//GEN-LAST:event_verFacturasActionPerformed
 
     private void actualizarMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarMontoActionPerformed
         ValidarRegistroSocio controller = new ValidarRegistroSocio(club);
@@ -314,6 +325,13 @@ public class RegistrarSocio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_consultar1ActionPerformed
 
+    private void realizarGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realizarGastoActionPerformed
+        // TODO add your handling code here:
+        RegistrarFactura factura = new RegistrarFactura(club);
+        factura.show();
+        this.show(false);
+    }//GEN-LAST:event_realizarGastoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualizarMonto;
@@ -332,5 +350,6 @@ public class RegistrarSocio extends javax.swing.JFrame {
     private javax.swing.JButton registrarPersonaAutorizada;
     private javax.swing.JButton registrarSocio;
     private javax.swing.JButton regresar;
+    private javax.swing.JButton verFacturas;
     // End of variables declaration//GEN-END:variables
 }
