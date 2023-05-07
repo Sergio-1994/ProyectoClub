@@ -137,6 +137,7 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="ordenar" max="32767" attributes="0"/>
                               <Component id="regresar1" pref="95" max="32767" attributes="0"/>
+                              <Component id="limpiar" alignment="0" pref="95" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -249,6 +250,8 @@
                       <Component id="tipoBebida" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="limpiar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="regresar1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -273,7 +276,7 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Seleccione el tipo de plato"/>
+                <StringItem index="0" value="Seleccione una opci&#xf3;n"/>
                 <StringItem index="1" value="Entradas"/>
                 <StringItem index="2" value="Platos Fuertes"/>
                 <StringItem index="3" value="Postres"/>
@@ -607,7 +610,7 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
-                <StringItem index="0" value="Seleccione el tipo "/>
+                <StringItem index="0" value="Seleccione una opci&#xf3;n"/>
                 <StringItem index="1" value="Fria"/>
                 <StringItem index="2" value="Caliente"/>
               </StringArray>
@@ -619,6 +622,20 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="limpiar">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="44" green="44" red="1" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Limpiar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="limpiarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -43,8 +43,12 @@ public class ValidarRegistroPersonaAutodizada {
         if (!verificarNumeroEntero(cedulaPersonaAutorizada) || !verificarNumeroEntero(cedulaSocio)) {
             JOptionPane.showMessageDialog(null, "El campo cédula debe ser un número entero");
             return;
+            
+            
         }
-
+        
+        //Se comenta para prueba de conexion 
+/*
         if (club.buscarSocioId(cedulaSocio) == null) {
             JOptionPane.showMessageDialog(null, "¡No existe un Socio con el número de cédula ingresado!");
             return;
@@ -54,11 +58,11 @@ public class ValidarRegistroPersonaAutodizada {
             JOptionPane.showMessageDialog(null, "¡El número de cédula ingresado no puede ser igual al de un socio!");
             return;
         }
-
+*/
         //Una vez validado el formulario procedemos a crear la persona autorizada
         try {
-
-            socio = club.buscarSocioId(cedulaSocio);
+   //Se comenta para prueba de conexions
+           // socio = club.buscarSocioId(cedulaSocio);
             socio.registrarPersonaAutorizada(nombrePersonaAutorizada, cedulaPersonaAutorizada, cedulaSocio);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR INESPERADO" + e);

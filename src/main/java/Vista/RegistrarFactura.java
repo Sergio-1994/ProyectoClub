@@ -23,6 +23,7 @@ public class RegistrarFactura extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.club = club;
+        totalPagar.setEnabled(false);
     }
 
     /**
@@ -74,6 +75,7 @@ public class RegistrarFactura extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         tipoBebida = new javax.swing.JComboBox<>();
+        limpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,7 +84,7 @@ public class RegistrarFactura extends javax.swing.JFrame {
 
         jLabel2.setText("Tipo de Plato");
 
-        tipoServicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el tipo de plato", "Entradas", "Platos Fuertes", "Postres" }));
+        tipoServicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Entradas", "Platos Fuertes", "Postres" }));
         tipoServicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipoServicioActionPerformed(evt);
@@ -244,10 +246,19 @@ public class RegistrarFactura extends javax.swing.JFrame {
 
         jLabel21.setText("Caliente");
 
-        tipoBebida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el tipo ", "Fria", "Caliente" }));
+        tipoBebida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Fria", "Caliente" }));
         tipoBebida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipoBebidaActionPerformed(evt);
+            }
+        });
+
+        limpiar.setBackground(new java.awt.Color(1, 68, 68));
+        limpiar.setForeground(new java.awt.Color(255, 255, 255));
+        limpiar.setText("Limpiar");
+        limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarActionPerformed(evt);
             }
         });
 
@@ -330,7 +341,8 @@ public class RegistrarFactura extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ordenar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(regresar1, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))))
+                            .addComponent(regresar1, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                            .addComponent(limpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))))
                 .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
@@ -418,6 +430,8 @@ public class RegistrarFactura extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(tipoBebida, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(limpiar)
+                .addGap(18, 18, 18)
                 .addComponent(regresar1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -438,10 +452,26 @@ public class RegistrarFactura extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void alcoholicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alcoholicaActionPerformed
         // TODO add your handling code here:
         if (alcoholica.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Debes seleccionar una bebida fria");
+            noAlcoholica.setEnabled(true);
+            tipoServicio.setEnabled(false);
+            totalPagar.setText("");
+        } else if (alcoholica.getSelectedIndex() == 1) {
+            totalPagar.setText("15000");
+            noAlcoholica.setEnabled(false);
+        } else if (alcoholica.getSelectedIndex() == 2) {
+            totalPagar.setText("17000");
+            noAlcoholica.setEnabled(false);
+        } else if (alcoholica.getSelectedIndex() == 3) {
+            totalPagar.setText("14000");
+            noAlcoholica.setEnabled(false);
+        } else {
+            totalPagar.setText("");
+            noAlcoholica.setEnabled(true);
         }
     }//GEN-LAST:event_alcoholicaActionPerformed
 
@@ -449,12 +479,20 @@ public class RegistrarFactura extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (bebidaCaliente.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Debes seleccionar una bebida caliente");
+            totalPagar.setText("");
+            adicionBebida.setEnabled(false);
+
+        } else {
+            totalPagar.setText("5000");
+            tipoServicio.setEnabled(false);
+            adicionBebida.setEnabled(true);
         }
 
     }//GEN-LAST:event_bebidaCalienteActionPerformed
 
     private void platoFuerteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_platoFuerteActionPerformed
         // TODO add your handling code here:
+
         Object selectedItemPlatoFuerte = platoFuerte.getSelectedItem();
         if (selectedItemPlatoFuerte != null) {
             if (selectedItemPlatoFuerte == "Seleccione una opción") {
@@ -506,8 +544,10 @@ public class RegistrarFactura extends javax.swing.JFrame {
 
                 totalPagar.setText("45000");
 
-            } else {
+            } else if (selectedItemAdicion == "Champiñones") {
                 totalPagar.setText("50000");
+            } else {
+                totalPagar.setText("40000");
             }
 
         }
@@ -533,13 +573,13 @@ public class RegistrarFactura extends javax.swing.JFrame {
                 totalPagar.setText("");
             } else {
                 salsa.removeAllItems();
-                salsa.addItem("Seleccione una opcion");
+                salsa.addItem("Seleccione una opción");
                 salsa.addItem("Salsa de queso");
                 salsa.addItem("Guacamole");
                 salsa.addItem("Ninguno");
 
                 porcion.removeAllItems();
-                porcion.addItem("Seleccione una opcion");
+                porcion.addItem("Seleccione una opción");
                 porcion.addItem("Unica");
                 porcion.addItem("Para compartir");
 
@@ -551,13 +591,16 @@ public class RegistrarFactura extends javax.swing.JFrame {
     private void tipoServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoServicioActionPerformed
 
         //Sergio
+        removerAll();
+
+        totalPagar.setEnabled(false);
         if (tipoServicio.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Debes seleccionar un tipo de servicio");
             return;
         }
         if (tipoServicio.getSelectedIndex() == 1) {
             entrada.removeAllItems();
-            
+
             entrada.addItem("Seleccione una opción");
             entrada.addItem("Aritos de cebolla");
             entrada.addItem("Enrrollado de peperoni");
@@ -565,22 +608,20 @@ public class RegistrarFactura extends javax.swing.JFrame {
 
             tipoBebida.setEnabled(true);
             //tipoBebida.setSelectedIndex(0);
-            
+
             noAlcoholica.removeAllItems();
             platoFuerte.removeAllItems();
             postre.removeAllItems();
             adiciones.removeAllItems();
-           
+
             return;
         }
         if (tipoServicio.getSelectedIndex() == 2) {
-            
+
             platoFuerte.removeAllItems();
             platoFuerte.addItem("Seleccione una opción");
             platoFuerte.addItem("Veganos");
             platoFuerte.addItem("Mixtos");
-
- 
 
             noAlcoholica.addItem("Seleccione una opción");
             noAlcoholica.addItem("Coca-cola");
@@ -598,15 +639,15 @@ public class RegistrarFactura extends javax.swing.JFrame {
         }
 
         if (tipoServicio.getSelectedIndex() == 3) {
-            
+
             postre.removeAllItems();
             postre.addItem("Seleccione una opción");
             postre.addItem("Helado de chocolate");
             postre.addItem("Helado de tiramisu");
 
-            tipoBebida.setEnabled(true);            
+            tipoBebida.setEnabled(true);
             //tipoBebida.setSelectedIndex(0);
-            
+
             noAlcoholica.removeAllItems();
             entrada.removeAllItems();
             platoFuerte.removeAllItems();
@@ -665,6 +706,21 @@ public class RegistrarFactura extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (adicionBebida.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Puedes seleccionar adiciones");
+
+            String totalPagarTexto = totalPagar.getText();
+            if (!totalPagarTexto.isEmpty()) {
+                totalPagar.setText("5000");
+            } else {
+                totalPagar.setText("");
+            }
+        } else if (adicionBebida.getSelectedIndex() == 1 && bebidaCaliente.getSelectedIndex() != 0) {
+            totalPagar.setText("5500");
+        } else if (adicionBebida.getSelectedIndex() == 2 && bebidaCaliente.getSelectedIndex() != 0) {
+            totalPagar.setText("6000");
+        } else if (adicionBebida.getSelectedIndex() == 3 && bebidaCaliente.getSelectedIndex() != 0) {
+            totalPagar.setText("6500");
+        } else if (bebidaCaliente.getSelectedIndex() != 0) {
+            totalPagar.setText("5000");
         }
     }//GEN-LAST:event_adicionBebidaActionPerformed
 
@@ -672,17 +728,39 @@ public class RegistrarFactura extends javax.swing.JFrame {
 
         ValidarRegistroFactura controller = new ValidarRegistroFactura(club);
         boolean estado = false;
+        String consumo;
 
-        estado = controller.registrarFactura(cedulaSocio.getText(), tipoServicio.getSelectedIndex(),
-            entrada.getSelectedIndex(), postre.getSelectedIndex(), platoFuerte.getSelectedIndex(),
-            porcion.getSelectedIndex(), adiciones.getSelectedIndex(), salsa.getSelectedIndex(),
-            tipoBebida.getSelectedIndex(), bebidaCaliente.getSelectedIndex(), alcoholica.getSelectedIndex(),
-            noAlcoholica.getSelectedIndex(), gradoAlcohol.getSelectedIndex(), azucar.getSelectedIndex(),
-            adicionBebida.getSelectedIndex(), totalPagar.getText());
+        String tipoServicioItem = (tipoServicio.getSelectedItem() != null && tipoServicio.getSelectedItem() != "Seleccione una opción") ? tipoServicio.getSelectedItem().toString() + " - " : "";
+        String entradaItem = (entrada.getSelectedItem() != null && entrada.getSelectedItem() != "Seleccione una opción") ? entrada.getSelectedItem().toString() + " - " : "";
+        String postreItem = (postre.getSelectedItem() != null && postre.getSelectedItem() != "Seleccione una opción") ? postre.getSelectedItem().toString() + " - " : "";
+        String platoFuerteItem = (platoFuerte.getSelectedItem() != null && platoFuerte.getSelectedItem() != "Seleccione una opción") ? platoFuerte.getSelectedItem().toString() + " - " : "";
+        String porcionItem = (porcion.getSelectedItem() != null && porcion.getSelectedItem() != "Seleccione una opción") ? porcion.getSelectedItem().toString() + " - " : "";
+        String adicionesItem = (adiciones.getSelectedItem() != null && adiciones.getSelectedItem() != "Seleccione una opción") ? adiciones.getSelectedItem().toString() + " - " : "";
+        String salsaItem = (salsa.getSelectedItem() != null && salsa.getSelectedItem() != "Seleccione una opción") ? salsa.getSelectedItem().toString() + " - " : "";
+        String tipoBebidaItem = (tipoBebida.getSelectedItem() != null && tipoBebida.getSelectedItem() != "Seleccione una opción") ? tipoBebida.getSelectedItem().toString() + " - " : "";
+        String bebidaCalientetem = (bebidaCaliente.getSelectedItem() != null && bebidaCaliente.getSelectedItem() != "Seleccione una opción") ? bebidaCaliente.getSelectedItem().toString() + " - " : "";
+        String alcoholicaItem = (alcoholica.getSelectedItem() != null && alcoholica.getSelectedItem() != "Seleccione una opción") ? alcoholica.getSelectedItem().toString() + " - " : "";
+        String noAlcoholicaItem = (noAlcoholica.getSelectedItem() != null && noAlcoholica.getSelectedItem() != "Seleccione una opción") ? noAlcoholica.getSelectedItem().toString() + " - " : "";
+        String adicionBebidaItem = (adicionBebida.getSelectedItem() != null && adicionBebida.getSelectedItem() != "Seleccione una opción") ? adicionBebida.getSelectedItem().toString() + " - " : "";
+
+  
+
+        consumo = tipoServicioItem + entradaItem + postreItem + platoFuerteItem + porcionItem + adicionesItem + salsaItem + tipoBebidaItem + 
+                bebidaCalientetem + alcoholicaItem + noAlcoholicaItem + adicionBebidaItem;
+
+        /*estado = controller.registrarFactura(cedulaSocio.getText(), tipoServicio.getSelectedIndex(),
+                entrada.getSelectedIndex(), postre.getSelectedIndex(), platoFuerte.getSelectedIndex(),
+                porcion.getSelectedIndex(), adiciones.getSelectedIndex(), salsa.getSelectedIndex(),
+                tipoBebida.getSelectedIndex(), bebidaCaliente.getSelectedIndex(), alcoholica.getSelectedIndex(),
+                noAlcoholica.getSelectedIndex(), gradoAlcohol.getSelectedIndex(), azucar.getSelectedIndex(),
+                adicionBebida.getSelectedIndex(), totalPagar.getText());*/
+        
+        estado = controller.registrarFactura(cedulaSocio.getText(), totalPagar.getText());
 
         if (estado == true) {
-            club.crearFactura(cedulaSocio.getText(), tipoServicio.getSelectedIndex(),
-                    entrada.getSelectedItem().toString(), porcion.getSelectedIndex(), totalPagar.getText());
+      //se comenta para porbar conexion 
+            //club.crearFactura(cedulaSocio.getText(), consumo, totalPagar.getText());
+
 
         }
     }//GEN-LAST:event_ordenarActionPerformed
@@ -712,10 +790,10 @@ public class RegistrarFactura extends javax.swing.JFrame {
 
             } else if (selectedItemPorcion == "Unica") {
 
-                totalPagar.setText("200000");
+                totalPagar.setText("20000");
 
             } else {
-                totalPagar.setText("400000");
+                totalPagar.setText("40000");
             }
 
         }
@@ -725,29 +803,60 @@ public class RegistrarFactura extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (noAlcoholica.getSelectedIndex() == 4 && alcoholica.getSelectedIndex() == 4) {
             JOptionPane.showMessageDialog(null, "Debes seleccionar una bebida fria");
+            alcoholica.setEnabled(true);
+            totalPagar.setText("");
+        } else if (noAlcoholica.getSelectedIndex() == 1) {
+            alcoholica.setEnabled(false);
+            totalPagar.setText("5000");
+        } else if (noAlcoholica.getSelectedIndex() == 2) {
+            alcoholica.setEnabled(false);
+            totalPagar.setText("4000");
+        } else if (noAlcoholica.getSelectedIndex() == 3) {
+            alcoholica.setEnabled(false);
+            totalPagar.setText("4500");
+        } else {
+            alcoholica.setEnabled(true);
+            totalPagar.setText("");
         }
+
     }//GEN-LAST:event_noAlcoholicaActionPerformed
 
+    private void removerAll() {
+        /*alcoholica.removeAllItems();
+        noAlcoholica.removeAllItems();
+        bebidaCaliente.removeAllItems();
+        adicionBebida.removeAllItems();
+        entrada.removeAllItems();
+        platoFuerte.removeAllItems();
+        alcoholica.removeAllItems();
+        postre.removeAllItems();
+        adiciones.removeAllItems();
+        tipoBebida.removeAllItems();
+         */
+        porcion.removeAllItems();
+        salsa.removeAllItems();
+
+    }
     private void tipoBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoBebidaActionPerformed
         // TODO add your handling code here:
         if (tipoBebida.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Debes seleccionar un tipo de bebida");
         }
         if (tipoBebida.getSelectedIndex() == 1) {
-            
+
             noAlcoholica.removeAllItems();
-            
+
             noAlcoholica.addItem("Seleccione una opción");
-            noAlcoholica.addItem("Coca-cola");
-            noAlcoholica.addItem("Manzana");
-            noAlcoholica.addItem("Sprite");
+            noAlcoholica.addItem("Coca-cola/35 gr");
+            noAlcoholica.addItem("Manzana/Postobon/48 gr");
+            noAlcoholica.addItem("Sprite/Coca-Cola/6.6 gr");
             noAlcoholica.addItem("Ninguno");
-            
+
             alcoholica.removeAllItems();
             alcoholica.addItem("Seleccione una opción");
-            alcoholica.addItem("Vodka");
-            alcoholica.addItem("Wisky");
-            alcoholica.addItem("Tequila");
+            alcoholica.addItem("Vodka/Absolut/40 grados");
+            alcoholica.addItem("Whisky/Jack Daniel's/40 grados");
+            alcoholica.addItem("Tequila/Jose Cuervo/38 grados");
             alcoholica.addItem("Ninguno");
 
             bebidaCaliente.removeAllItems();
@@ -755,6 +864,7 @@ public class RegistrarFactura extends javax.swing.JFrame {
         }
 
         if (tipoBebida.getSelectedIndex() == 2) {
+            tipoServicio.setEnabled(false);
             bebidaCaliente.removeAllItems();
             bebidaCaliente.addItem("Seleccione una opción");
             bebidaCaliente.addItem("Café en leche");
@@ -773,6 +883,27 @@ public class RegistrarFactura extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_tipoBebidaActionPerformed
+
+    private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
+        porcion.removeAllItems();
+        salsa.removeAllItems();
+        noAlcoholica.removeAllItems();
+        bebidaCaliente.removeAllItems();
+        adicionBebida.removeAllItems();
+        entrada.removeAllItems();
+        platoFuerte.removeAllItems();
+        alcoholica.removeAllItems();
+        postre.removeAllItems();
+        adiciones.removeAllItems();
+        tipoServicio.setSelectedIndex(0);
+        tipoBebida.setEnabled(true);
+        tipoServicio.setEnabled(true);
+        tipoBebida.setSelectedIndex(0);
+        totalPagar.setText("");
+        cedulaSocio.setText("");
+
+
+    }//GEN-LAST:event_limpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -806,6 +937,7 @@ public class RegistrarFactura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton limpiar;
     private javax.swing.JComboBox<String> noAlcoholica;
     private javax.swing.JButton ordenar;
     private javax.swing.JComboBox<String> platoFuerte;

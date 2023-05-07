@@ -89,14 +89,14 @@
                   <Component id="labelCedula" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="inputCedula" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="actualizarMonto" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="actualizarMonto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="inputFondos" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="consultar1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="consultar1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="labelFondos" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -104,16 +104,16 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelSuscripcion" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="inputSuscripcion" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="eliminarSocio" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="eliminarSocio" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="registrarPersonaAutorizada" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="verFacturas" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                   <Component id="regresar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="realizarGasto" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="realizarGasto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="verFacturas" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="48" max="32767" attributes="0"/>
+              <EmptySpace pref="57" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

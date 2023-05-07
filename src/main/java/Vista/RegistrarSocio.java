@@ -218,25 +218,25 @@ public class RegistrarSocio extends javax.swing.JFrame {
                     .addComponent(labelCedula)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(inputCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(actualizarMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(actualizarMonto)))
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(inputFondos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(consultar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(consultar1))
                     .addComponent(labelFondos))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSuscripcion)
                     .addComponent(inputSuscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eliminarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(eliminarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registrarPersonaAutorizada)
-                    .addComponent(verFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(regresar)
-                    .addComponent(realizarGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                    .addComponent(realizarGasto)
+                    .addComponent(verFacturas))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         labelCedula.getAccessibleContext().setAccessibleName("nombre");
@@ -262,7 +262,8 @@ public class RegistrarSocio extends javax.swing.JFrame {
         // TODO add your handling code here:
         ValidarRegistroSocio controller = new ValidarRegistroSocio(club);
         boolean estado = false;
-        estado = controller.registrarSocio(inputNombre.getText(), inputCedula.getText(), inputFondos.getText(), inputSuscripcion.getSelectedItem().toString());
+        estado = controller.registrarSocio(inputNombre.getText(), inputCedula.getText(), inputFondos.getText(),
+                inputSuscripcion.getSelectedItem().toString());
 
         if (estado == true) {
             inputNombre.setText("");

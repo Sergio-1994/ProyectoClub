@@ -13,13 +13,11 @@ public class ValidarRegistroFactura {
         this.club = club;
     }
 
-    public boolean registrarFactura(String cedula, int tipoServicio, int entrada, int postre,
-            int platoFuerte, int porcion, int adicionPlatos, int salsa, int tipoBebida, int caliente,
-            int alcoholica, int noAlcoholica, int gradoAcohol, int azucar, int adicionBebida, String totalPagar) {
+    public boolean registrarFactura(String cedula, String totalPagar) {
 
         boolean estado = false;
-
-        if (cedula.equals("") || cedula.equals(false)) {
+        
+        /*if (cedula.equals("") || cedula.equals(false)) {
             JOptionPane.showMessageDialog(null, "El campo cédula no puede estar vacio");
             return estado;
         }
@@ -87,14 +85,27 @@ public class ValidarRegistroFactura {
             JOptionPane.showMessageDialog(null, "Debes seleccionar una bebida fria");
             return estado;
         }
+        */
+         
+        if (cedula.equals("") || cedula.equals(false)) {
+            JOptionPane.showMessageDialog(null, "El campo cédula no puede estar vacio");
+            return estado;
+        }
         
+        if (totalPagar.equals("") || totalPagar.equals(false)) {
+            JOptionPane.showMessageDialog(null, "Es necesario que haga un pedido");
+            return estado;
+        }
         
+        //se comenta para prueba de Conexion
+        /*
         if (club.buscarSocioId(cedula) == null && club.buscarPersonaAutorizada(cedula) == null) {
-            System.out.println(club.buscarPersonaAutorizada(cedula));
+          
             JOptionPane.showMessageDialog(null, "Debes estar registrado para poder consumir");
             return estado;
         }
         
+        */
         return true;
     }
 }
