@@ -4,88 +4,20 @@ import Modelo.Club;
 import Modelo.PersonaAutorizada;
 import Modelo.Socio;
 import javax.swing.JOptionPane;
+import Conexion.Conexion;
 
-public class ValidarRegistroFactura {
+public class ValidarRegistroFactura  extends Conexion{
 
     private Club club;
 
     public ValidarRegistroFactura(Club club) {
         this.club = club;
+         this.establecerConexion();
     }
 
-    public boolean registrarFactura(String cedula, String totalPagar) {
+    public boolean registrarFactura(String cedula,String consumo, String totalPagar) {
 
         boolean estado = false;
-        
-        /*if (cedula.equals("") || cedula.equals(false)) {
-            JOptionPane.showMessageDialog(null, "El campo cédula no puede estar vacio");
-            return estado;
-        }
-
-        if (tipoServicio == 0) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar un tipo de servicio");
-            return estado;
-        }
-
-        if (entrada == 0) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar una entrada");
-            return estado;
-        }
-
-        if (postre == 0) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar un postre");
-            return estado;
-        }
-
-        if (platoFuerte == 0) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar un plato fuerte");
-            return estado;
-        }
-
-        if (porcion == 0) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar un porcion");
-            return estado;
-        }
-
-        if (adicionPlatos == 0) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar una adicion de platos");
-            return estado;
-        }
-
-        if (salsa == 0) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar una salsa");
-            return estado;
-        }
-
-        if (tipoBebida == 0) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar un tipo de bebida");
-            return estado;
-        }
-
-        if (caliente == 0) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar una bebida caliente");
-            return estado;
-        }
-
-        if (alcoholica == 0) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar una bebida alcoholica");
-            return estado;
-        }
-        if (noAlcoholica == 0) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar una bebida no alcoholica");
-            return estado;
-        }
-
-        if (adicionBebida == 0) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar una adicion de bebida");
-            return estado;
-        }
-
-        if (alcoholica == 4 && noAlcoholica == 4) {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar una bebida fria");
-            return estado;
-        }
-        */
          
         if (cedula.equals("") || cedula.equals(false)) {
             JOptionPane.showMessageDialog(null, "El campo cédula no puede estar vacio");
@@ -97,15 +29,28 @@ public class ValidarRegistroFactura {
             return estado;
         }
         
-        //se comenta para prueba de Conexion
-        /*
-        if (club.buscarSocioId(cedula) == null && club.buscarPersonaAutorizada(cedula) == null) {
-          
-            JOptionPane.showMessageDialog(null, "Debes estar registrado para poder consumir");
+         try {
+
+            club.crearFactura(cedula, consumo, totalPagar,this.getConexion());
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR INESPERADO" + e.getMessage() + "/n" + e.getCause());
+            for (StackTraceElement stack : e.getStackTrace()) {
+                System.out.println(stack.toString());
+            };
             return estado;
+        } finally {
+            try {
+                this.getConexion().close();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Fallo cerrando conexión " + ex);
+                for (StackTraceElement stack : ex.getStackTrace()) {
+                    System.out.println(stack.toString());
+                };
+            }
+
         }
-        
-        */
-        return true;
+              
+    
     }
 }

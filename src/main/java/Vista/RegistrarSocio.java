@@ -80,7 +80,7 @@ public class RegistrarSocio extends javax.swing.JFrame {
             }
         });
 
-        regresar.setBackground(new java.awt.Color(1, 68, 68));
+        regresar.setBackground(new java.awt.Color(255, 51, 51));
         regresar.setForeground(new java.awt.Color(255, 255, 255));
         regresar.setText("Regresar");
         regresar.addActionListener(new java.awt.event.ActionListener() {
@@ -226,16 +226,18 @@ public class RegistrarSocio extends javax.swing.JFrame {
                         .addComponent(consultar1))
                     .addComponent(labelFondos))
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelSuscripcion)
-                    .addComponent(inputSuscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eliminarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(eliminarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelSuscripcion)
+                        .addComponent(inputSuscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(registrarPersonaAutorizada)
-                    .addComponent(regresar)
-                    .addComponent(realizarGasto)
-                    .addComponent(verFacturas))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(verFacturas, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(registrarPersonaAutorizada)
+                        .addComponent(regresar)
+                        .addComponent(realizarGasto)))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
@@ -287,14 +289,7 @@ public class RegistrarSocio extends javax.swing.JFrame {
         ValidarRegistroSocio controller = new ValidarRegistroSocio(club);
         Socio socio = new Socio();
 
-        socio = controller.consultarSocio(inputCedula.getText());
-
-        if (socio != null) {
-            inputNombre.setText(socio.getNombre());
-            inputFondos.setText(socio.getFondoDisponible());
-            inputSuscripcion.setSelectedItem(socio.getTipoSuscripcion());
-        }
-
+        controller.eliminarSocio(inputCedula.getText());
 
     }//GEN-LAST:event_eliminarSocioActionPerformed
 

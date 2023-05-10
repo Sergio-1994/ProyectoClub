@@ -4,8 +4,13 @@
  */
 package DAO;
 
+import Modelo.Factura;
+import Modelo.Persona;
+import Modelo.PersonaAutorizada;
 import Modelo.Socio;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -16,5 +21,10 @@ public interface DaoService {
      public void registrarSocio(Socio socio)throws SQLException;
      public boolean buscarSociosVIP(String tpoSuscripcion)throws SQLException;
      public void actualizarMonto(String cedula, double nuevoMonto)throws SQLException;
+     public String eliminarSocio(String cedula) throws SQLException;
+     public void registrarAutorizado(PersonaAutorizada personaAutorizada) throws SQLException;
+     public PersonaAutorizada buscarPersonaAutorizadaId(String cedula) throws SQLException;
+     public List<Persona> listarPersonas(String cedula) throws SQLException;
+     public void registrarFactura(Factura factura) throws SQLException;
     
 }

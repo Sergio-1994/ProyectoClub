@@ -18,30 +18,32 @@ public class Factura {
     private String concepto;
     private String valor;
     private Date fechaFactura;
-    private String cedulaSocio;
-    private boolean estado;
+    private String cedula;
+    private String estado;
     
     public Factura(){
         
     }
 
 
-    public Factura(String concepto, String valor, String cedulaSocio) {
+    public Factura(String concepto, String valor, String cedulaSocio, String estado) {
         this.concepto = concepto;
         this.valor = valor;
-        this.cedulaSocio = cedulaSocio;
+        this.cedula = cedulaSocio;
         this.fechaFactura = new Date();
-        this.estado = true;
+        this.estado = estado;
 
     }
 
-    public boolean isEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
+
+
     
 
     public String getConcepto() {
@@ -68,12 +70,12 @@ public class Factura {
         this.fechaFactura = fechaFactura;
     }
 
-    public String getCedulaSocio() {
-        return cedulaSocio;
+    public String getCedula() {
+        return cedula;
     }
 
-    public void setCedulaSocio(String cedulaSocio) {
-        this.cedulaSocio = cedulaSocio;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
 

@@ -54,10 +54,10 @@ public class Persona {
     public String listarFacturas() {
         String salida = "";
         for (Factura iterador : this.factura) {
-            salida += iterador.getCedulaSocio() + "|"
+            salida += iterador.getCedula() + "|"
                     + iterador.getConcepto() + "|"
                     + iterador.getValor() + "|"
-                    + iterador.isEstado() + "\n";
+                    + iterador.getEstado() + "\n";
         }
 
         return salida;

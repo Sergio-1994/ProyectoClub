@@ -4,11 +4,16 @@
  */
 package DAO;
 
+import Modelo.Factura;
+import Modelo.Persona;
+import Modelo.PersonaAutorizada;
 import Modelo.Socio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -40,7 +45,6 @@ public class DAOImplementation implements DaoService {
             socio = new Socio(fondos, tipoDeSuscripcion, nombre, cedula);
         }
 
-        System.out.println("Lo que se encontro " + rs);
         rs.close();
         preparedStatement.close();
 
@@ -85,16 +89,105 @@ public class DAOImplementation implements DaoService {
         }
 
     }
-     @Override
-     public void actualizarMonto(String cedula, double nuevoMonto) throws SQLException {
-        
+
+    @Override
+    public void actualizarMonto(String cedula, double nuevoMonto) throws SQLException {
+
         String Query = "USE [CLUBSOCIAL] UPDATE SOCIO SET fondos = ? WHERE cedula = ?";
         PreparedStatement preparedStatement = conexion.prepareStatement(Query);
         preparedStatement.setDouble(1, nuevoMonto);
         preparedStatement.setString(2, cedula);
         preparedStatement.execute();
         preparedStatement.close();
-        
-     }
-     
+
+    }
+
+    @Override
+    public String eliminarSocio(String cedula) throws SQLException {
+        String result = null;
+        String Query = "USE [CLUBSOCIAL] EXEC Proc_Eliminar_Socio ?";
+        PreparedStatement preparedStatement = conexion.prepareStatement(Query);
+        preparedStatement.setString(1, cedula);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        if (rs.next()) {
+            result = rs.getString("RESULT");
+
+        }
+        preparedStatement.close();
+        return result;
+
+    }
+
+    @Override
+    public void registrarAutorizado(PersonaAutorizada personaAutorizada) throws SQLException {
+        String Query = "USE [CLUBSOCIAL] INSERT INTO [dbo].[Persona] ([cedulaP],[nombre]) VALUES (?,?)";
+        PreparedStatement preparedStatement = conexion.prepareStatement(Query);
+        preparedStatement.setString(1, personaAutorizada.getCedula());
+        preparedStatement.setString(2, personaAutorizada.getNombre());
+        preparedStatement.execute();
+        preparedStatement.close();
+
+        String Query2 = "USE [CLUBSOCIAL] INSERT INTO [dbo].[Autorizado] ([cedula],[cedula_socio]) VALUES (?,?)";
+        PreparedStatement preparedStatement2 = conexion.prepareStatement(Query2);
+        preparedStatement2.setString(1, personaAutorizada.getCedula());
+        preparedStatement2.setString(2, personaAutorizada.getCedulaSocio());
+        preparedStatement2.execute();
+        preparedStatement2.close();
+    }
+
+    @Override
+    public PersonaAutorizada buscarPersonaAutorizadaId(String cedula) throws SQLException {
+        PersonaAutorizada personaAutorizada = null;
+        String Query = "USE  CLUBSOCIAL   SELECT cedulaP, nombre, cedula_socio FROM Persona LEFT JOIN Autorizado ON cedula = cedulaP WHERE cedulaP = ? ";
+        PreparedStatement preparedStatement = conexion.prepareStatement(Query);
+        preparedStatement.setString(1, cedula);
+
+        ResultSet rs = preparedStatement.executeQuery();
+        if (rs.next()) {
+            String nombre = rs.getString("nombre");
+            String cedulaP = rs.getString("cedulaP");
+            String cedula_socio = rs.getString("cedula_socio");
+
+            personaAutorizada = new PersonaAutorizada(nombre, cedulaP, cedula_socio);
+        }
+
+        rs.close();
+        preparedStatement.close();
+
+        return personaAutorizada;
+    }
+
+    @Override
+    public List<Persona> listarPersonas(String cedula) throws SQLException {
+        List<Persona> personas = new ArrayList<>();
+
+        String Query = "USE  CLUBSOCIAL  SELECT cedula, nombre FROM Persona INNER JOIN Autorizado ON cedula = cedulaP WHERE cedula_socio = ?";
+        PreparedStatement preparedStatement = conexion.prepareStatement(Query);
+        preparedStatement.setString(1, cedula);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while (rs.next()) {
+            String cedulaA = rs.getString("cedula");
+            String nombre = rs.getString("nombre");
+            Persona persona = new Persona(nombre, cedulaA);
+            personas.add(persona);
+        }
+        rs.close();
+        preparedStatement.close();
+
+        return personas;
+    }
+
+    @Override
+    public void registrarFactura(Factura factura) throws SQLException {
+        String Query = "USE [CLUBSOCIAL] INSERT INTO [dbo].[Factura] ([concepto],[valor],[cedulaF]) VALUES (?,?,?)";
+        PreparedStatement preparedStatement = conexion.prepareStatement(Query);
+        preparedStatement.setString(1, factura.getConcepto());
+        preparedStatement.setString(2, factura.getValor());
+        preparedStatement.setString(3, factura.getCedula());
+        preparedStatement.execute();
+        preparedStatement.close();
+
+    }
 }

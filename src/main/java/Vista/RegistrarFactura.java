@@ -747,15 +747,8 @@ public class RegistrarFactura extends javax.swing.JFrame {
 
         consumo = tipoServicioItem + entradaItem + postreItem + platoFuerteItem + porcionItem + adicionesItem + salsaItem + tipoBebidaItem + 
                 bebidaCalientetem + alcoholicaItem + noAlcoholicaItem + adicionBebidaItem;
-
-        /*estado = controller.registrarFactura(cedulaSocio.getText(), tipoServicio.getSelectedIndex(),
-                entrada.getSelectedIndex(), postre.getSelectedIndex(), platoFuerte.getSelectedIndex(),
-                porcion.getSelectedIndex(), adiciones.getSelectedIndex(), salsa.getSelectedIndex(),
-                tipoBebida.getSelectedIndex(), bebidaCaliente.getSelectedIndex(), alcoholica.getSelectedIndex(),
-                noAlcoholica.getSelectedIndex(), gradoAlcohol.getSelectedIndex(), azucar.getSelectedIndex(),
-                adicionBebida.getSelectedIndex(), totalPagar.getText());*/
         
-        estado = controller.registrarFactura(cedulaSocio.getText(), totalPagar.getText());
+        estado = controller.registrarFactura(cedulaSocio.getText(),consumo, totalPagar.getText());
 
         if (estado == true) {
       //se comenta para porbar conexion 

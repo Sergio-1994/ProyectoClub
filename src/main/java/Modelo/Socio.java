@@ -62,32 +62,6 @@ public class Socio extends Persona {
     
     
 
-    public void registrarPersonaAutorizada(String nombrePersonaAutorizada, String cedulaPersonaAutorizada, String cedulaSocio) {
-
-        PersonaAutorizada personaAutorizada = buscarPersonaAutorizada(cedulaPersonaAutorizada);
-
-        if (personaAutorizada != null) {
-            JOptionPane.showMessageDialog(null, "Vaya ya exite una persona con se número de cédula!!");
-            return;
-        }
-
-        personaAutorizada = new PersonaAutorizada(nombrePersonaAutorizada, cedulaPersonaAutorizada, cedulaSocio);
-        personasAutorizadas.add(personaAutorizada);
-        JOptionPane.showMessageDialog(null, personaAutorizada.getNombre()
-                + " bienvenid@, ya eres una persona autorizada");
-        listarPersonas();
-
-    }
-
-    public PersonaAutorizada buscarPersonaAutorizada(String cedula) {
-        for (PersonaAutorizada personaAutorizada : this.personasAutorizadas) {
-            if (personaAutorizada.getCedula().equals(cedula)) {
-                return personaAutorizada;
-            }
-        }
-        return null;
-    }
-
     public String listarPersonas() {
         String salida = "";
         for (PersonaAutorizada personaAutorizada : this.personasAutorizadas) {

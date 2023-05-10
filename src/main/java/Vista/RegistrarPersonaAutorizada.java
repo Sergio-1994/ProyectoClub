@@ -63,7 +63,8 @@ public class RegistrarPersonaAutorizada extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Registrar una persona Autorizada");
 
-        jButton1.setBackground(new java.awt.Color(1, 68, 68));
+        jButton1.setBackground(new java.awt.Color(255, 51, 51));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +73,7 @@ public class RegistrarPersonaAutorizada extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(1, 68, 68));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Registrar Persona");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +82,7 @@ public class RegistrarPersonaAutorizada extends javax.swing.JFrame {
         });
 
         listarPersonasAutorizadas.setBackground(new java.awt.Color(1, 68, 68));
+        listarPersonasAutorizadas.setForeground(new java.awt.Color(255, 255, 255));
         listarPersonasAutorizadas.setText("Listar personas ");
         listarPersonasAutorizadas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +91,7 @@ public class RegistrarPersonaAutorizada extends javax.swing.JFrame {
         });
 
         realizarConsumo.setBackground(new java.awt.Color(1, 68, 68));
+        realizarConsumo.setForeground(new java.awt.Color(255, 255, 255));
         realizarConsumo.setText("Realizar consumo");
         realizarConsumo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,17 +122,16 @@ public class RegistrarPersonaAutorizada extends javax.swing.JFrame {
                                     .addComponent(cedulaPersonaAutorizada)
                                     .addComponent(cedulaSocio)))
                             .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(16, 16, 16))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(realizarConsumo)
                                     .addComponent(listarPersonasAutorizadas, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(18, Short.MAX_VALUE))))))
+                                .addContainerGap(18, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                .addGap(16, 16, 16))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +177,13 @@ public class RegistrarPersonaAutorizada extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ValidarRegistroPersonaAutodizada controller = new ValidarRegistroPersonaAutodizada(club);
-        controller.registrarPersonaAutorizada(nombrePersonaAutorizada.getText(), cedulaPersonaAutorizada.getText(), cedulaSocio.getText());
+        boolean estado =controller.registrarPersonaAutorizada(nombrePersonaAutorizada.getText(), cedulaPersonaAutorizada.getText(), cedulaSocio.getText());
+        if (estado ==true){
+            nombrePersonaAutorizada.setText("");
+            cedulaPersonaAutorizada.setText("");
+            cedulaSocio.setText("");
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -188,7 +197,8 @@ public class RegistrarPersonaAutorizada extends javax.swing.JFrame {
     }//GEN-LAST:event_nombrePersonaAutorizadaActionPerformed
 
     private void listarPersonasAutorizadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarPersonasAutorizadasActionPerformed
-        club.listarPersonas();
+        ValidarRegistroPersonaAutodizada controller = new ValidarRegistroPersonaAutodizada(club);
+        controller.listarPersonas(cedulaSocio.getText());
     }//GEN-LAST:event_listarPersonasAutorizadasActionPerformed
 
     private void realizarConsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realizarConsumoActionPerformed

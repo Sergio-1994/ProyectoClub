@@ -9,8 +9,10 @@ import DAO.DaoService;
 import FabricaDeConsumos.FabricaDeConsumos;
 import Vista.Main;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,22 +45,18 @@ public class Club {
         this.personas = personas;
     }
 
-    public boolean eliminarSocio(int cedulaCliente) {
-        return true;
-    }
-
     public double totalConsumos(int cedulaCliente) {
         return 0;
     }
 
     public boolean registrarSocio(String nombre, String cedula, String fondosDisponibles, String tipoSuscripcion, Connection conexion) throws SQLException {
         Socio socio = buscarSocioId(cedula, conexion);
-       boolean suscripcion  = true;
+        boolean suscripcion = true;
         if (socio == null) {
-            if (tipoSuscripcion == "VIP"){
-                suscripcion= sociosVIP(tipoSuscripcion, conexion);
+            if (tipoSuscripcion == "VIP") {
+                suscripcion = sociosVIP(tipoSuscripcion, conexion);
             }
-            
+
             if (suscripcion == false) {
                 JOptionPane.showMessageDialog(null, "No hay más cupos para socios VIP!!");
                 return false;
@@ -75,25 +73,25 @@ public class Club {
                         + " bienvenid@, ya eres miembro del club social");
                 return true;
             }
-        }else{
-                JOptionPane.showMessageDialog(null, socio.getNombre()+" Ya existe un registro con esa identificación ");
-        
+        } else {
+            JOptionPane.showMessageDialog(null, socio.getNombre() + " Ya existe un registro con esa identificación ");
+
         }
-         return false;
+        return false;
 
     }
 
-    public boolean actualizarMonto(String cedula, double nuevoMonto,Connection conexion) throws SQLException {
+    public boolean actualizarMonto(String cedula, double nuevoMonto, Connection conexion) throws SQLException {
         double sumMonto;
         Socio socio = buscarSocioId(cedula, conexion);
-         
-         if (socio != null) {
-             DaoService dao = new DAOImplementation(conexion);
-             dao.actualizarMonto(cedula, nuevoMonto);
-             JOptionPane.showMessageDialog(null,"Se actualizo registro correctamente");
-         }else{
-             JOptionPane.showMessageDialog(null,"La identificacion ingresada no esta creada");
-         }
+
+        if (socio != null) {
+            DaoService dao = new DAOImplementation(conexion);
+            dao.actualizarMonto(cedula, nuevoMonto);
+            JOptionPane.showMessageDialog(null, "Se actualizo registro correctamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "La identificacion ingresada no esta creada");
+        }
         /*for (Socio socio : this.socios) {
             if (socio.getCedula().equals(cedula)) {
                 sumMonto = Double.parseDouble(socio.getFondoDisponible()) + nuevoMonto;
@@ -108,12 +106,18 @@ public class Club {
     /**
      * Método para listar las personas autorizadas
      */
-    public void listarPersonas() {
-        String salida = "";
-        for (Socio interador : socios) {
-            salida += interador.listarPersonas() + '\n';
+    public void listarPersonas(String cedula, Connection conexion) throws SQLException {
+        DaoService dao = new DAOImplementation(conexion);
+        List<Persona> personas = dao.listarPersonas(cedula);
+
+        StringBuilder mensaje = new StringBuilder();
+        for (Persona persona : personas) {
+            mensaje.append("Cédula: ").append(persona.getCedula()).append("\n");
+            mensaje.append("Nombre: ").append(persona.getNombre()).append("\n\n");
         }
-        JOptionPane.showMessageDialog(null, salida);
+
+// Mostrar la cadena de texto en un JOptionPane
+        JOptionPane.showMessageDialog(null, mensaje.toString(), "Listado de Personas", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -159,11 +163,28 @@ public class Club {
         return socion;
     }
 
+    public void eliminarSocio(String cedula, Connection conexion) throws SQLException {
+
+        DaoService dao = new DAOImplementation(conexion);
+        String rs = dao.eliminarSocio(cedula);
+
+        if (rs.equals("1")) {
+            JOptionPane.showMessageDialog(null, "Se elimino correctamente el socio");
+        } else if (rs.equals("2")) {
+            JOptionPane.showMessageDialog(null, "El Socio a eliminar es un VIP");
+        } else if (rs.equals("3")) {
+            JOptionPane.showMessageDialog(null, "El Socio a eliminar tiene facturas asociadas");
+        } else {
+            JOptionPane.showMessageDialog(null, "El Socio a eliminar tiene personas autorizadas asociadas");
+        }
+
+    }
+
     /**
      * Método para validar el número de socios VIP
      */
-    private boolean sociosVIP(String tipoSuscripcion, Connection conexion)throws SQLException {
-       /* int cont = 1;
+    private boolean sociosVIP(String tipoSuscripcion, Connection conexion) throws SQLException {
+        /* int cont = 1;
         if (tipoSuscripcion.equals("VIP")) {
             for (Socio socio : this.socios) {
                 if (socio.getTipoSuscripcion().equals(tipoSuscripcion)) {
@@ -171,23 +192,38 @@ public class Club {
                 }
             }
         }*/
-       
+
         DaoService dao = new DAOImplementation(conexion);
         return dao.buscarSociosVIP(tipoSuscripcion);
     }
 
     public void crearFactura(String cedula, String consumos, String totalPagar, Connection conexion) throws SQLException {
-        Persona socio = buscarSocioId(cedula, conexion);
-        Persona pesonaAutorizada = buscarPersonaAutorizada(cedula);
+        String cedulaS = cedula;
+        Socio socio = buscarSocioId(cedula, conexion);
+        if (socio == null) {
+            PersonaAutorizada pesonaAutorizada = buscarPersonaAutorizada(cedula, conexion);
+            if (pesonaAutorizada == null) {
+                JOptionPane.showMessageDialog(null, "No existe persona para poder realizar este consumo");
+                return;
+            } else {
+                cedulaS = pesonaAutorizada.getCedulaSocio();
+            }
+        }
 
-        if (consultarFondoActual(cedula, conexion) <= Double.parseDouble(totalPagar)) {
+        if (consultarFondoActual(cedulaS, conexion) <= Double.parseDouble(totalPagar)) {
             JOptionPane.showMessageDialog(null, "¡Vaya no tienes saldo disponible ");
             return;
         } else {
-            pagarFactura(totalPagar);
+            JOptionPane.showMessageDialog(null, "Si tiene saldo para pagar");
+            //pagarFactura(totalPagar);
+            DaoService dao = new DAOImplementation(conexion);
+            Factura factura = new Factura(consumos, totalPagar, cedula, "");
+
+            dao.registrarFactura(factura);
 
         }
 
+        /*
         if (socio != null) {
 
             FabricaDeConsumos fabrica = new FabricaDeConsumos();
@@ -201,6 +237,7 @@ public class Club {
 
             JOptionPane.showMessageDialog(null, "Se generó el pedido a nombre de " + socio.getNombre());
         }
+        /*
         if (pesonaAutorizada != null) {
 
             FabricaDeConsumos fabrica = new FabricaDeConsumos();
@@ -208,12 +245,12 @@ public class Club {
 
             //Factura factura = new Factura(consumo.getNombre(), consumo.getPrecio(), cedula);
             Factura factura = new Factura(consumos, totalPagar, cedula);
-            pesonaAutorizada.getFactura().add(factura);
+          //  pesonaAutorizada.getFactura().add(factura);
             factura.setEstado(false);
 
             JOptionPane.showMessageDialog(null, "Se generó el pedido a nombre de " + pesonaAutorizada.getNombre());
         }
-
+         */
     }
 
     public void listarFacturas() {
@@ -228,26 +265,14 @@ public class Club {
     public Double consultarFondoActual(String cedula, Connection conexion) throws SQLException {
 
         Socio socio = buscarSocioId(cedula, conexion);
-        PersonaAutorizada persona = buscarPersonaAutorizada(cedula);
+        //PersonaAutorizada persona = buscarPersonaAutorizada(cedula);
         if (socio != null) {
 
             return Double.parseDouble(socio.getFondoDisponible());
         } else {
-            cedula = persona.getCedulaSocio();
-
-            socio = buscarSocioId(cedula, conexion);
-            return Double.parseDouble(socio.getFondoDisponible());
+            JOptionPane.showMessageDialog(null, "El socio consultado no existe");
+            return Double.parseDouble("0");
         }
-        /*for (Socio socio : this.socios) {
-            System.out.println(socio);
-            for (PersonaAutorizada persona : socio.getPersonasAutorizadas()) {
-                if (socio.getCedula().equals(cedula) ) {
-                    System.out.println("Entra");
-                    return Double.parseDouble(socio.getFondoDisponible());
-                }
-            }
- return null;
-        }*/
 
     }
 
@@ -260,12 +285,13 @@ public class Club {
         }
     }
 
-    public PersonaAutorizada buscarPersonaAutorizada(String cedula) {
-        for (Socio socio : this.socios) {
-            PersonaAutorizada pesonaAutorizada = socio.buscarPersonaAutorizada(cedula);
-            return pesonaAutorizada;
-        }
-        return null;
+    public PersonaAutorizada buscarPersonaAutorizada(String cedula, Connection conexion) throws SQLException {
+
+        DaoService dao = new DAOImplementation(conexion);
+        PersonaAutorizada personaAutorizada = dao.buscarPersonaAutorizadaId(cedula);
+
+        return personaAutorizada;
+
     }
 
     public void listarTodasLasPersonas() {
@@ -275,6 +301,28 @@ public class Club {
                 System.out.println(persona.getNombre());
             }
         }
+    }
+
+    public boolean registrarPersonaAutorizada(String nombrePersonaAutorizada, String cedulaPersonaAutorizada, String cedulaSocio, Connection conexion) throws SQLException {
+
+        PersonaAutorizada personaAutorizada = buscarPersonaAutorizada(cedulaPersonaAutorizada, conexion);
+
+        if (personaAutorizada != null) {
+            JOptionPane.showMessageDialog(null, "Vaya ya exite una persona con se número de cédula!!");
+            return false;
+
+        } else {
+
+            personaAutorizada = new PersonaAutorizada(nombrePersonaAutorizada, cedulaPersonaAutorizada, cedulaSocio);
+            // personasAutorizadas.add(personaAutorizada);
+            DaoService dao = new DAOImplementation(conexion);
+            dao.registrarAutorizado(personaAutorizada);
+            JOptionPane.showMessageDialog(null, personaAutorizada.getNombre()
+                    + " bienvenid@, ya eres una persona autorizada");
+            listarPersonas(cedulaSocio, conexion);
+            return true;
+        }
+
     }
 
 }

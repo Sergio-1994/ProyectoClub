@@ -160,5 +160,43 @@ public class ValidarRegistroSocio extends Conexion {
 
         return null;
     }
+    
+    public void eliminarSocio(String cedula) {
+
+        if (cedula.equals("") || cedula.equals(false)) {
+            JOptionPane.showMessageDialog(null, "El campo cédula no puede estar vacio");
+            
+        }
+
+        try {
+
+            if (club.buscarSocioId(cedula, this.getConexion()) == null) {
+                JOptionPane.showMessageDialog(null, "No existe un socio con ese número de cédula");
+                
+            } else {
+                club.eliminarSocio(cedula, this.getConexion());
+                
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR INESPERADO" + e.getMessage() + "/n" + e.getCause());
+            for (StackTraceElement stack : e.getStackTrace()) {
+                System.out.println(stack.toString());
+            };
+
+        } finally {
+            try {
+                this.getConexion().close();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Fallo cerrando conexión " + ex);
+                for (StackTraceElement stack : ex.getStackTrace()) {
+                    System.out.println(stack.toString());
+                };
+            }
+
+        }
+
+        
+    }
 
 }
