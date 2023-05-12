@@ -7,6 +7,7 @@ package Vista;
 import Controller.ValidarRegistroPersonaAutodizada;
 import Modelo.Club;
 import Modelo.Socio;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,6 +46,7 @@ public class RegistrarPersonaAutorizada extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         listarPersonasAutorizadas = new javax.swing.JButton();
         realizarConsumo = new javax.swing.JButton();
+        BtnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +101,15 @@ public class RegistrarPersonaAutorizada extends javax.swing.JFrame {
             }
         });
 
+        BtnEliminar.setBackground(new java.awt.Color(1, 68, 68));
+        BtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnEliminar.setText("Eliminar P. Aut.");
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -108,7 +119,8 @@ public class RegistrarPersonaAutorizada extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addGap(34, 34, 34)
+                        .addComponent(realizarConsumo))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -123,15 +135,11 @@ public class RegistrarPersonaAutorizada extends javax.swing.JFrame {
                                     .addComponent(cedulaSocio)))
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(realizarConsumo)
-                                    .addComponent(listarPersonasAutorizadas, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(18, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                                .addGap(16, 16, 16))))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(listarPersonasAutorizadas, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                            .addComponent(jButton2)
+                            .addComponent(BtnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,9 +161,11 @@ public class RegistrarPersonaAutorizada extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cedulaS)
                     .addComponent(cedulaSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(realizarConsumo))
+                    .addComponent(BtnEliminar))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(realizarConsumo))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -208,7 +218,16 @@ public class RegistrarPersonaAutorizada extends javax.swing.JFrame {
         this.show(false);
     }//GEN-LAST:event_realizarConsumoActionPerformed
 
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        ValidarRegistroPersonaAutodizada controller = new ValidarRegistroPersonaAutodizada(club);
+         String CedulaSocio = JOptionPane.showInputDialog("Ingrese la identificacion de la persona autorizada");
+        controller.eliminarPersonaAutorizada (CedulaSocio);
+        
+
+    }//GEN-LAST:event_BtnEliminarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnEliminar;
     private javax.swing.JTextField cedulaPersonaAutorizada;
     private javax.swing.JLabel cedulaS;
     private javax.swing.JTextField cedulaSocio;

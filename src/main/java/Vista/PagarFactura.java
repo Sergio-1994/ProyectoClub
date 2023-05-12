@@ -4,17 +4,25 @@
  */
 package Vista;
 
+import Controller.ValidarRegistroFactura;
+import Modelo.Club;
+import Modelo.Factura;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Tatiana
  */
 public class PagarFactura extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PagarFactura
-     */
-    public PagarFactura() {
+    private Club club;
+
+    public PagarFactura(Club club) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.club = club;
     }
 
     /**
@@ -27,28 +35,34 @@ public class PagarFactura extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        Cedula = new javax.swing.JTextField();
+        inputCedula = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BtnConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Facturas = new javax.swing.JTable();
-        Saldo = new javax.swing.JTextField();
+        TableFacturas = new javax.swing.JTable();
+        BtnPagar = new javax.swing.JButton();
+        regresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Cedula.addActionListener(new java.awt.event.ActionListener() {
+        inputCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CedulaActionPerformed(evt);
+                inputCedulaActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Cedula");
 
-        jButton1.setBackground(new java.awt.Color(1, 68, 68));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Consultar");
+        BtnConsultar.setBackground(new java.awt.Color(1, 68, 68));
+        BtnConsultar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnConsultar.setText("Consultar");
+        BtnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnConsultarActionPerformed(evt);
+            }
+        });
 
-        Facturas.setModel(new javax.swing.table.DefaultTableModel(
+        TableFacturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -67,12 +81,23 @@ public class PagarFactura extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(Facturas);
+        jScrollPane1.setViewportView(TableFacturas);
 
-        Saldo.setText("Saldo");
-        Saldo.addActionListener(new java.awt.event.ActionListener() {
+        BtnPagar.setBackground(new java.awt.Color(1, 68, 68));
+        BtnPagar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnPagar.setText("Pagar");
+        BtnPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SaldoActionPerformed(evt);
+                BtnPagarActionPerformed(evt);
+            }
+        });
+
+        regresar.setBackground(new java.awt.Color(255, 51, 51));
+        regresar.setForeground(new java.awt.Color(255, 255, 255));
+        regresar.setText("Regresar");
+        regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarActionPerformed(evt);
             }
         });
 
@@ -81,17 +106,22 @@ public class PagarFactura extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(30, 30, 30)
-                        .addComponent(Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Saldo)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BtnConsultar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnPagar))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -99,13 +129,15 @@ public class PagarFactura extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1)
-                    .addComponent(Saldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnConsultar)
+                    .addComponent(BtnPagar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(regresar)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -124,56 +156,64 @@ public class PagarFactura extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CedulaActionPerformed
+    private void inputCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputCedulaActionPerformed
 
-    private void SaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaldoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SaldoActionPerformed
+    }//GEN-LAST:event_inputCedulaActionPerformed
 
+    private void BtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConsultarActionPerformed
+        ValidarRegistroFactura controller = new ValidarRegistroFactura(club);
+
+        List<Factura> facturas = controller.consultarFacturas(inputCedula.getText());
+        if (facturas != null) {
+            StringBuilder mensaje = new StringBuilder();
+            DefaultTableModel model = (DefaultTableModel) TableFacturas.getModel();
+            model.setRowCount(0); // Limpiar filas existentes en la tabla
+
+            for (Factura factura : facturas) {
+                Object[] rowData = new Object[4]; // Crea un array con la cantidad de columnas de la tabla
+
+                rowData[0] = factura.getIdFactura(); // Valor para la columna 0: IdFactura
+                rowData[1] = factura.getConcepto(); // Valor para la columna 1: Concepto
+                rowData[2] = factura.getValor(); // Valor para la columna 2: Valor
+                rowData[3] = factura.getNombre(); // Valor para la columna 3: Nombre
+
+                model.addRow(rowData); // Agregar fila al modelo de la tabla
+            }
+
+        }else{
+           JOptionPane.showMessageDialog(null,"La cedula consultada no tiene informacion para mostrar");
+        }
+
+
+    }//GEN-LAST:event_BtnConsultarActionPerformed
+
+    private void BtnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPagarActionPerformed
+        String IdFactura = JOptionPane.showInputDialog("Ingrese el id de la factura que desea pagar");
+        ValidarRegistroFactura controller = new ValidarRegistroFactura(club);
+        controller.pagarFactura(IdFactura);
+        BtnConsultar.doClick();
+        
+    }//GEN-LAST:event_BtnPagarActionPerformed
+
+    private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
+        RegistrarSocio inicio = new RegistrarSocio(club);
+        inicio.show();
+        this.show(false);
+    }//GEN-LAST:event_regresarActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PagarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PagarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PagarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PagarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PagarFactura().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Cedula;
-    private javax.swing.JTable Facturas;
-    private javax.swing.JTextField Saldo;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton BtnConsultar;
+    private javax.swing.JButton BtnPagar;
+    private javax.swing.JTable TableFacturas;
+    private javax.swing.JTextField inputCedula;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton regresar;
     // End of variables declaration//GEN-END:variables
 }

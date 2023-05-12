@@ -4,21 +4,21 @@
  */
 package Modelo;
 
-import FabricaDeConsumos.FabricaDeConsumos;
-import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author ESTUDIANTE
  */
 public class Factura {
-
+    
+    
+    private int idFactura;
     private String concepto;
     private String valor;
     private Date fechaFactura;
     private String cedula;
+    private String nombre;
     private String estado;
     
     public Factura(){
@@ -26,13 +26,31 @@ public class Factura {
     }
 
 
-    public Factura(String concepto, String valor, String cedulaSocio, String estado) {
+    public Factura(String concepto, String valor, String cedulaSocio, String estado, String nombre,int idFactura) {
         this.concepto = concepto;
         this.valor = valor;
         this.cedula = cedulaSocio;
         this.fechaFactura = new Date();
         this.estado = estado;
+        this.nombre = nombre;
+        this.idFactura = idFactura;
 
+    }
+
+    public int getIdFactura() {
+        return idFactura;
+    }
+
+    public void setIdFactura(int idFactura) {
+        this.idFactura = idFactura;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getEstado() {

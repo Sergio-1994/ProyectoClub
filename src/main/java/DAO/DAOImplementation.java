@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -188,6 +189,73 @@ public class DAOImplementation implements DaoService {
         preparedStatement.setString(3, factura.getCedula());
         preparedStatement.execute();
         preparedStatement.close();
+
+    }
+
+    @Override
+    public List<Factura> listarFacturas(String cedula) throws SQLException {
+        List<Factura> facturas = new ArrayList<>();
+
+        String Query = "USE  CLUBSOCIAL  EXEC [Proc_ConsultarFacturas] ?";
+        PreparedStatement preparedStatement = conexion.prepareStatement(Query);
+        preparedStatement.setString(1, cedula);
+        boolean hasResults = preparedStatement.execute();
+
+        if (hasResults) {
+            ResultSet rs = preparedStatement.getResultSet();
+
+            while (rs.next()) {
+                // Obtener los datos del ResultSet y crear las facturas
+                int id_factura = rs.getInt("id_factura");
+                String concepto = rs.getString("concepto");
+                String valor = rs.getString("valor");
+                String nombre = rs.getString("nombre");
+                String fondos = rs.getString("fondos");
+                Factura factura = new Factura(concepto, valor, cedula, fondos, nombre, id_factura);
+
+                facturas.add(factura);
+            }
+
+            rs.close();
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay facturas pendientes para la cedula consultada, o la cc consultada no existe ");
+        }
+        preparedStatement.close();
+
+        return facturas;
+    }
+    
+    
+    @Override
+    public String pagarFactura(int IdFactura) throws SQLException {
+        String result = null;
+        String Query = "USE [CLUBSOCIAL] EXEC Proc_PagarFactura ?";
+        PreparedStatement preparedStatement = conexion.prepareStatement(Query);
+        preparedStatement.setInt(1, IdFactura);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        if (rs.next()) {
+            result = rs.getString("RESULT");
+
+        }
+        preparedStatement.close();
+        return result;
+
+    }
+    @Override
+    public String eliminarPersonaAutorizada(String cedula) throws SQLException {
+        String result = null;
+        String Query = "USE [CLUBSOCIAL] EXEC Proc_EliminarPersonaAutorizada ?";
+        PreparedStatement preparedStatement = conexion.prepareStatement(Query);
+        preparedStatement.setString(1, cedula);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        if (rs.next()) {
+            result = rs.getString("RESULT");
+
+        }
+        preparedStatement.close();
+        return result;
 
     }
 }

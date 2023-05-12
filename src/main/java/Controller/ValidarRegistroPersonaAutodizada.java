@@ -72,16 +72,16 @@ public class ValidarRegistroPersonaAutodizada extends Conexion {
             JOptionPane.showMessageDialog(null, "El campo cédula socio no puede estar vacio");
             return;
         }
-         try {
+        try {
 
             club.listarPersonas(cedula, this.getConexion());
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR INESPERADO" + e.getMessage() + "/n" + e.getCause());
             for (StackTraceElement stack : e.getStackTrace()) {
                 System.out.println(stack.toString());
             };
-            
+
         } finally {
             try {
                 this.getConexion().close();
@@ -94,6 +94,33 @@ public class ValidarRegistroPersonaAutodizada extends Conexion {
 
         }
 
+    }
+
+    public void eliminarPersonaAutorizada(String Cedula) {
+        if (Cedula == null) {
+            JOptionPane.showMessageDialog(null, "El campo IdFactura no puede estar vacio");
+            return;
+        }
+        try {
+            
+            club.eliminarPersonaAutorizada(Cedula, this.getConexion());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR INESPERADO" + e.getMessage() + "/n" + e.getCause());
+            for (StackTraceElement stack : e.getStackTrace()) {
+                System.out.println(stack.toString());
+            };
+
+        } finally {
+            try {
+                this.getConexion().close();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Fallo cerrando conexión " + ex);
+                for (StackTraceElement stack : ex.getStackTrace()) {
+                    System.out.println(stack.toString());
+                };
+            }
+
+        }
     }
 
 }

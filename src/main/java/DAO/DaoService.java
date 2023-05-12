@@ -26,5 +26,7 @@ public interface DaoService {
      public PersonaAutorizada buscarPersonaAutorizadaId(String cedula) throws SQLException;
      public List<Persona> listarPersonas(String cedula) throws SQLException;
      public void registrarFactura(Factura factura) throws SQLException;
-    
+     public List<Factura> listarFacturas(String cedula) throws SQLException ;
+     public String pagarFactura(int IdFactura) throws SQLException;
+     public String eliminarPersonaAutorizada(String cedula) throws SQLException;
 }

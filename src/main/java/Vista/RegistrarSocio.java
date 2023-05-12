@@ -298,8 +298,10 @@ public class RegistrarSocio extends javax.swing.JFrame {
     }//GEN-LAST:event_inputSuscripcionActionPerformed
 
     private void verFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verFacturasActionPerformed
-        //club.listarFacturas();
-        club.listarTodasLasPersonas();
+     
+        PagarFactura inicio = new PagarFactura(club);
+        inicio.show();
+        this.show(false);
     }//GEN-LAST:event_verFacturasActionPerformed
 
     private void actualizarMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarMontoActionPerformed
